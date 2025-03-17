@@ -4,9 +4,65 @@
              x:Class="ygo_mobile.card_details"
              Title="card_details">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <HorizontalStackLayout>
+            <!--
+            back button/header
+            -->
+            <Button Text="BACK"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <!--CARD IMAGE-->
+            <Image Source="dotnet_bot.png"/>
+
+            <VerticalStackLayout Spacing="2">
+
+                <!--ATTRIBUTE-->
+                <HorizontalStackLayout>
+                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
+                    <Label Text="ATTR."/>
+                </HorizontalStackLayout>
+                <!--TYPE-->
+                <HorizontalStackLayout>
+                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
+                    <Label Text="TYPE"/>
+                </HorizontalStackLayout>
+                <!--FAVOURITE-->
+                <HorizontalStackLayout>
+                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
+                    <Label Text="FAV"/>
+                </HorizontalStackLayout>
+                <!--ADD TO DECK-->
+                <HorizontalStackLayout>
+                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
+                    <Label Text="ADD"/>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+            <!--RANK/LEVEL-->
+            <Border StrokeShape="RoundRectangle 40,40,40,40">
+                <VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </Border>
+        </HorizontalStackLayout>
+        <!--
+        CARD-NAME
+        CARD-DESC
+        -->
+        <!--CARD NAME-->
+        <Label Text="[CARD NAME]"/>
+        <!--CARD DESC-->
+        <Border StrokeShape="RoundRectangle 40,40,40,40">
+            <Label Text="CARD DESCRIPTION"/>
+        </Border>
+        <ListView>
+            <!--
+            MISC.-INFO
+            -->
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
