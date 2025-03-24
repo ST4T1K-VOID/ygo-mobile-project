@@ -9,8 +9,22 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:card_details}"
+        ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage"
-       />
-
+    />
+    <ShellContent
+        Title="Card-Details"
+        ContentTemplate="{DataTemplate local:card_details}"
+        Route="card-details"
+    />
+    <ShellContent
+        Title="search-resutls"
+        ContentTemplate="{DataTemplate local:search_results}"
+        Route="search-results"
+    />
+    <ShellContent
+        Title="advanced_searchpage"
+        ContentTemplate="{DataTemplate local:advanced_searchpage}"
+        Route="advanced-searchpage"
+    />
 </Shell>
