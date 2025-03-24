@@ -5,64 +5,84 @@
              Title="card_details">
     <VerticalStackLayout>
         <HorizontalStackLayout>
-            <!--
-            back button/header
-            -->
-            <Button Text="BACK"/>
+            <!-- back button/header-->
+            <ImageButton Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="Start"/>
         </HorizontalStackLayout>
 
-        <HorizontalStackLayout>
+        <!--GUI TOP-->
+        <HorizontalStackLayout HorizontalOptions="Fill">
             <!--CARD IMAGE-->
-            <Image Source="dotnet_bot.png"/>
+            <!--placeholder card image, min W208 H264 replaced with proper icon via [].xaml.cs-->
+            <Image Source="placeholder_card.png" MinimumHeightRequest="264" MinimumWidthRequest="208" Margin="3"/>
 
-            <VerticalStackLayout Spacing="2">
-
+            <VerticalStackLayout Spacing="2" VerticalOptions="Fill" HorizontalOptions="Fill">
                 <!--ATTRIBUTE-->
                 <HorizontalStackLayout>
-                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
-                    <Label Text="ATTR."/>
+                    <!--default/placeholder attribute icon and text, replaced with proper icon/text via [].xaml.cs  -->
+                    <Image Source="placeholder_attribute.png" HeightRequest="50" WidthRequest="50" />
+                    <Label Text="[Attr.]" VerticalTextAlignment="Center"/>
                 </HorizontalStackLayout>
+                
                 <!--TYPE-->
                 <HorizontalStackLayout>
-                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
-                    <Label Text="TYPE"/>
-                </HorizontalStackLayout>
-                <!--FAVOURITE-->
-                <HorizontalStackLayout>
-                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
-                    <Label Text="FAV"/>
-                </HorizontalStackLayout>
-                <!--ADD TO DECK-->
-                <HorizontalStackLayout>
-                    <Rectangle Fill="#512BD4" HeightRequest="40" WidthRequest="40"/>
-                    <Label Text="ADD"/>
+                    <!--default/placeholder type icon and text, replaced with proper icon/text via [].xaml.cs  -->
+                    <Image Source="placeholder_type.png" HeightRequest="50" WidthRequest="50" />
+                    <Label Text="[Type]" VerticalTextAlignment="Center"/>
                 </HorizontalStackLayout>
 
+                <VerticalStackLayout MinimumWidthRequest="190" Spacing="2">
+                    <!--ADD TO DECK-->
+                    <Button Text="Favourite" MinimumHeightRequest="75"  HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                    <!--FAVOURITE-->
+                    <Button Text="Add to deck" MinimumHeightRequest="75" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                </VerticalStackLayout>
+                
             </VerticalStackLayout>
         </HorizontalStackLayout>
 
+
         <HorizontalStackLayout>
             <!--RANK/LEVEL-->
-            <Border StrokeShape="RoundRectangle 40,40,40,40">
+            <!--Default rank/level icon, hidden by default, shown as appropriate by [].xaml.cs-->
+            <Border StrokeShape="RoundRectangle 15,15,15,15" HorizontalOptions="Fill" MinimumWidthRequest="400" Margin="3,5,0,5">
+                <HorizontalStackLayout Spacing="3" >
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                    <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!--GUI BOTTOM-->
+        </HorizontalStackLayout>
+        <VerticalStackLayout Margin="3,0,3,0">
+            <Border>
                 <VerticalStackLayout>
-                    
+                    <!--CARD NAME-->
+                    <Label Text="[CARD NAME]" FontSize="18" Padding="0,0,0,5"/>
+                    <!--TESTING TEXT || REMOVE AFTER LAYOUT COMPLETE-->
+                    <!--CARD DESC-->
+                    <Border Margin="3">
+                        <VerticalStackLayout>
+                            <Label Text="[ATTR.]||[TYPE]"/>
+                            <Label Margin="2,0,2,0" Text="If this card is Special Summoned: You can add 1 'Change' Quick-Play Spell Card from your Deck to your hand. If this card is sent to the GY: You can add 1 'HERO' monster from your Deck to your hand, except 'Elemental HERO Shadow Mist'. You can only use 1 'Elemental HERO Shadow Mist' effect per turn, and only once that turn.'" />
+                        </VerticalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
             </Border>
-        </HorizontalStackLayout>
-        <!--
-        CARD-NAME
-        CARD-DESC
-        -->
-        <!--CARD NAME-->
-        <Label Text="[CARD NAME]"/>
-        <!--CARD DESC-->
-        <Border StrokeShape="RoundRectangle 40,40,40,40">
-            <Label Text="CARD DESCRIPTION"/>
-        </Border>
+        </VerticalStackLayout>
+        
+        <!--TODO: implement expandable listview-->
         <ListView>
-            <!--
-            MISC.-INFO
-            -->
+            <!--MISC.-INFO-->
         </ListView>
     </VerticalStackLayout>
 </ContentPage>
