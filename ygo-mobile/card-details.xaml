@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ygo_mobile.card_details"
              Title="card_details">
+    
+<!--TODO: add page navigation-->
     <VerticalStackLayout>
         <HorizontalStackLayout>
             <!-- back button/header-->
@@ -30,6 +32,7 @@
                     <Label Text="[Type]" VerticalTextAlignment="Center"/>
                 </HorizontalStackLayout>
 
+                <!--TODO: Add button functionality-->
                 <VerticalStackLayout MinimumWidthRequest="190" Spacing="2">
                     <!--ADD TO DECK-->
                     <Button Text="Favourite" MinimumHeightRequest="75"  HorizontalOptions="Fill" VerticalOptions="Fill"/>
