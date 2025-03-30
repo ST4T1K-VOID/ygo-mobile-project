@@ -6,7 +6,7 @@
     
 <!--TODO: add page navigation-->
     <VerticalStackLayout>
-        <HorizontalStackLayout>
+        <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Start">
             <!-- back button/header-->
             <ImageButton Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="Start"/>
         </HorizontalStackLayout>
