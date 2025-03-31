@@ -15,8 +15,8 @@
         <Button/>
 
         <!-- Additional content to be added-->
-        <Button IsVisble="False"/>
-        <Button IsVisible="False"/>
+        <Button/>
+        <Button/>
 
     </VerticalStackLayout>
 </ContentPage>
