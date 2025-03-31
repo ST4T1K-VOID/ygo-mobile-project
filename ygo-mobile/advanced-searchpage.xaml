@@ -4,9 +4,42 @@
              x:Class="ygo_mobile.advanced_searchpage"
              Title="advanced_searchpage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <!--TODO: name/fname-->
+
+        <!--KIND (Monster, spell, trap)-->
+        <HorizontalStackLayout>
+            <!--something here which changes which kind of card being search for-->
+            <!--Certain boxes and list change based on what KIND is selected-->
+        </HorizontalStackLayout>
+
+        <!--TYPE-->
+        <!--Certain boxes and list change/(de)activate based on what TYPE is selected-->
+        <Picker/>
+
+        <!--RANK/LEVEL-->
+        <Picker/>
+
+        <HorizontalStackLayout>
+            <!--ATK VALUE-->
+            <Entry/>
+            <Picker/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <!--DEF VALUE-->
+            <Entry/>
+            <Picker/>
+        </HorizontalStackLayout>
+        
+        <!--ATTR./ELEMENT-->
+        <Picker/>
+        <!--RACE/"TYPE"-->
+        <Picker/>
+
+        <!--GO/CLEAR-->
+        <HorizontalStackLayout Spacing="">
+            <Button/>
+            <Button/>
+        </HorizontalStackLayout>    
+
     </VerticalStackLayout>
 </ContentPage>
