@@ -7,7 +7,7 @@
 
         <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Start">
             <!-- back button/options/header-->
-            <ImageButton x:Name="button_options" Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="End"/>
+            <ImageButton x:Name="button_options" Source="placeholder_icon_.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="End"/>
         </HorizontalStackLayout>
 
         <Entry/>
