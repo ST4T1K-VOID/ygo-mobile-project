@@ -34,9 +34,11 @@
         <Picker/>
         <!--RACE/"TYPE"-->
         <Picker/>
+        
+        
 
         <!--GO/CLEAR-->
-        <HorizontalStackLayout Spacing="">
+        <HorizontalStackLayout Spacing="2">
             <Button/>
             <Button/>
         </HorizontalStackLayout>    
