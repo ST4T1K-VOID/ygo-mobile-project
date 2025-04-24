@@ -70,9 +70,12 @@
         <VerticalStackLayout Margin="3,0,3,0">
             <Border>
                 <VerticalStackLayout>
-                    <!--CARD NAME-->
-                    <Label x:Name="label_cardName" Text="[PLACEHOLDER]" FontSize="18" Padding="0,0,0,5"/>
-                    <!--TESTING TEXT || REMOVE AFTER LAYOUT COMPLETE-->
+                    <HorizontalStackLayout>
+                        <!--CARD NAME-->
+                        <Label x:Name="label_cardName" Text="[PLACEHOLDER]" FontSize="18" Padding="0,0,0,5"/>
+                        <Label x:Name="label_atk" Text="[ATK]" FontSize="18"/>
+                        <Label x:Name="label_def" Text="[DEF]" FontSize="18"/>
+                    </HorizontalStackLayout>
                     <!--CARD DESC-->
                     <Border Margin="3">
                         <VerticalStackLayout>
