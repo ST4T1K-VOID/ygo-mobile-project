@@ -18,10 +18,10 @@ namespace ygo_mobile
         public string Attribute { get; set; }
 
         public int Level { get; set; }
-        public int? Atk { get; set; }
-        public int? Def { get; set; }
+        public int Atk { get; set; }
+        public int Def { get; set; }
 
-        public List<string> CardImages { get; set; }
+        public Dictionary<string, string>? CardImages { get; set; } = new Dictionary<string, string>();
 
         //--misc info--
         public List<string>? CardSets { get; set; }
@@ -30,22 +30,48 @@ namespace ygo_mobile
         //public List<string>? CardPrices { get; set; }
         //NOTE: might not keep this
 
-        
-        public Card(string iD, string name, string desc, string type, string race, string attribute, int level, int atk, int def, List<string> cardImages, List<string> cardSets, List<string> cardPrices)
+
+        /// <summary>
+        /// instatiates a Card
+        /// </summary>
+        /// <param name="iD"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="type"></param>
+        /// <param name="race"></param>
+        /// <param name="attribute"></param>
+        /// <param name="level"></param>
+        /// <param name="atk"></param>
+        /// <param name="def"></param>
+        public Card(string iD, string name, string description, string type, string race, string attribute, int level, int atk, int def)
         {
             ID = iD;
             Name = name;
-            Description = desc;
+            Description = description;
             Type = type;
             Race = race;
             Attribute = attribute;
             Level = level;
             Atk = atk;
             Def = def;
-            CardImages = cardImages;
-            CardSets = cardSets;
+        }
+
+        public Image? UrlToImage(string key)
+        {
+            if (CardImages == null)
+            {
+                return null;
+            }
+            else if (CardImages.ContainsKey(key))
+            {
+                Image image = new Image { Source = CardImages[key] };
+                return image;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
-
 }
 
