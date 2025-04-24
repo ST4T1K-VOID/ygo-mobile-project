@@ -38,7 +38,7 @@ namespace ygo_mobile
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="type"></param>
-        /// <param name="Tribe"></param>
+        /// <param name="tribe"></param>
         /// <param name="attribute"></param>
         /// <param name="level"></param>
         /// <param name="atk"></param>
