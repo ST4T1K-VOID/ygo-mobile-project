@@ -7,8 +7,8 @@ public partial class advanced_searchpage : ContentPage
 		InitializeComponent();
 	}
 
-    //pre-determined values for card: Type, Race, Attribute
-    private List<string> CardType = new List<string>()
+    //pre-determined values for card: Type, Tribe, Attribute
+    private readonly List<string> CardType = new List<string>()
     {
         //--Main Deck Types--
         "Effect Monster",
@@ -44,9 +44,9 @@ public partial class advanced_searchpage : ContentPage
         "Token"
     };
 
-    private List<String> CardRace = new List<string>()
+    private readonly List<String> CardTribe = new List<string>()
     { 
-        //--Monster races--
+        //--Monster Tribes--
         "Aqua",
         "Beast",
         "Beast-Warrior",
@@ -72,20 +72,20 @@ public partial class advanced_searchpage : ContentPage
         "Winged Beast",
         "Wyrm",
         "Zombie",
-        //--Spell races--
+        //--Spell Tribes--
         "Normal",
         "Field",
         "Equip",
         "Continuous",
         "Quick-Play",
         "Ritual",
-        //--Trap races--
+        //--Trap Tribes--
         "Normal",
         "Continuous",
         "Counter"
     };
 
-    private List<string> CardAttribute = new List<string>()
+    private readonly List<string> CardAttribute = new List<string>()
     {
         "dark",
         "divine",

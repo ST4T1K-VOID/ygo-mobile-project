@@ -14,7 +14,7 @@ namespace ygo_mobile
 
 
         public string Type { get; set; }
-        public string Race { get; set; }
+        public string Tribe { get; set; }
         public string Attribute { get; set; }
 
         public int Level { get; set; }
@@ -38,18 +38,18 @@ namespace ygo_mobile
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="type"></param>
-        /// <param name="race"></param>
+        /// <param name="Tribe"></param>
         /// <param name="attribute"></param>
         /// <param name="level"></param>
         /// <param name="atk"></param>
         /// <param name="def"></param>
-        public Card(string iD, string name, string description, string type, string race, string attribute, int level, int atk, int def)
+        public Card(string iD, string name, string description, string type, string tribe, string attribute, int level, int atk, int def)
         {
             ID = iD;
             Name = name;
             Description = description;
             Type = type;
-            Race = race;
+            Tribe = tribe;
             Attribute = attribute;
             Level = level;
             Atk = atk;
