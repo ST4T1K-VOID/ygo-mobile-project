@@ -32,7 +32,8 @@ public partial class card_details : ContentPage
 			image_attribute.Source = ImageSource.FromFile($"attribute_{CurrentCard.Attribute}.png");
 			label_attribute.Text = CurrentCard.Attribute;
 
-            image_type.Source = ImageSource.FromFile($"attribute_{CurrentCard.Tribe}.png");
+			//cleans tribe value to match image naming conventions (alphanumeric/'_')
+            image_type.Source = ImageSource.FromFile($"attribute_{CurrentCard.Tribe.Replace("-","").ToLower()}.png");
 			label_type.Text = CurrentCard.Tribe;
 
 			label_name.Text = CurrentCard.Name;
