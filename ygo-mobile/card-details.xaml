@@ -6,19 +6,26 @@
     
 <!--TODO: add page navigation-->
     <VerticalStackLayout>
-        <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Start">
-            <!-- back button/header-->
-            <ImageButton Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="Start"/>
-            <Label x:Name="label_name" HorizontalOptions="Center"/>
-        </HorizontalStackLayout>
-
+        <!-- back button/header-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0"/>
+            <Label x:Name="label_name" Text="[PLACEHOLDER]" VerticalOptions="Center" Grid.Column="1" Grid.Row="0" FontAttributes="Bold" FontSize="20"/>
+        </Grid>
         <!--GUI TOP-->
-        <HorizontalStackLayout HorizontalOptions="Fill">
+        <HorizontalStackLayout>
             <!--CARD IMAGE-->
             <!--placeholder card image, min H264 W208 replaced with proper icon via [].xaml.cs-->
             <Image x:Name="image_card" Source="placeholder_card.png" MinimumHeightRequest="264" MinimumWidthRequest="208" Margin="3"/>
 
-            <VerticalStackLayout Spacing="2" VerticalOptions="Fill" HorizontalOptions="Fill">
+            <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Fill">
                 <!--ATTRIBUTE-->
                 <HorizontalStackLayout>
                     <!--default/placeholder attribute icon and text, replaced with proper icon/text via [].xaml.cs  -->
@@ -34,7 +41,7 @@
                 </HorizontalStackLayout>
 
                 <!--TODO: Add button functionality-->
-                <VerticalStackLayout MinimumWidthRequest="190" Spacing="2">
+                <VerticalStackLayout MinimumWidthRequest="190" Spacing="2" VerticalOptions="End">
                     <!--ADD TO DECK-->
                     <Button Text="Favourite" MinimumHeightRequest="75"  HorizontalOptions="Fill" VerticalOptions="Fill"/>
                     <!--FAVOURITE-->
@@ -70,12 +77,23 @@
         <VerticalStackLayout Margin="3,0,3,0">
             <Border>
                 <VerticalStackLayout>
-                    <HorizontalStackLayout>
-                        <!--CARD NAME-->
-                        <Label x:Name="label_cardName" Text="[PLACEHOLDER]" FontSize="18" Padding="0,0,0,5"/>
-                        <Label x:Name="label_atk" Text="[ATK]" FontSize="18"/>
-                        <Label x:Name="label_def" Text="[DEF]" FontSize="18"/>
-                    </HorizontalStackLayout>
+                    <!--CARD NAME-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="label_cardName" Text="[PLACEHOLDER]" FontSize="18" Padding="2,0,0,0" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" />
+                        <HorizontalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="Center">
+                            <Label x:Name="label_atk" Text="[ATK]" FontSize="18" FontAttributes="Bold" />
+                            <Label x:Name="label_def" Text="[DEF]" FontSize="18" FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+
+                    </Grid>
+
                     <!--CARD DESC-->
                     <Border Margin="3">
                         <VerticalStackLayout>
