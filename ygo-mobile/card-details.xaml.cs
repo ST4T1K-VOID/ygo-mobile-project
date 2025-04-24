@@ -33,8 +33,8 @@ public partial class card_details : ContentPage
 			label_attribute.Text = CurrentCard.Attribute;
 
 			//cleans tribe value to match image naming conventions (alphanumeric/'_')
-            image_type.Source = ImageSource.FromFile($"tribe_{CurrentCard.Tribe.Replace("-","").ToLower()}.png");
-			label_type.Text = CurrentCard.Tribe;
+            image_tribe.Source = ImageSource.FromFile($"tribe_{CurrentCard.Tribe.Replace("-","").ToLower()}.png");
+			label_tribe.Text = CurrentCard.Tribe;
 
 			label_name.Text = CurrentCard.Name;
 			label_cardName.Text = CurrentCard.Name;
