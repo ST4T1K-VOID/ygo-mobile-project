@@ -33,11 +33,11 @@
                     <Label x:Name="label_attribute" Text="[Attr.]" VerticalTextAlignment="Center"/>
                 </HorizontalStackLayout>
                 
-                <!--TYPE-->
+                <!--TRIBE/RACE/TYPE-->
                 <HorizontalStackLayout>
                     <!--default/placeholder type icon and text, replaced with proper icon/text via [].xaml.cs  -->
-                    <Image x:Name="image_type" Source="attribute_placeholder.png" HeightRequest="50" WidthRequest="50" />
-                    <Label x:Name="label_type" Text="[Type]" VerticalTextAlignment="Center"/>
+                    <Image x:Name="image_tribe" Source="attribute_placeholder.png" HeightRequest="50" WidthRequest="50" />
+                    <Label x:Name="label_tribe" Text="[Type]" VerticalTextAlignment="Center"/>
                 </HorizontalStackLayout>
 
                 <!--TODO: Add button functionality-->
