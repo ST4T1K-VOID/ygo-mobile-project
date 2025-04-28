@@ -11,7 +11,7 @@ namespace ygo_mobile
         public string ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
+        public string? Pendulum_Description { get; set; }
 
         public string Type { get; set; }
         public string Tribe { get; set; }
@@ -21,11 +21,16 @@ namespace ygo_mobile
         public int Atk { get; set; }
         public int Def { get; set; }
 
+        //other card attributes
+        //public int Pend_Scale { get; set; }
+        public List<String> LinkMarkers { get; set; }
+
         public Dictionary<string, string>? CardImages { get; set; } = new Dictionary<string, string>();
 
+
         //--misc info--
-        public List<string>? CardSets { get; set; }
-        //cardsets the card is in
+        //public List<string>? CardSets { get; set; }
+        //cardsets that include the card
 
         //public List<string>? CardPrices { get; set; }
         //NOTE: might not keep this
@@ -55,6 +60,8 @@ namespace ygo_mobile
             Atk = atk;
             Def = def;
         }
+
+
 
         public Image? UrlToImage(string key)
         {
