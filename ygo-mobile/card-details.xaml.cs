@@ -21,8 +21,10 @@ public partial class card_details : ContentPage
 	/// <summary>
 	/// Fills the page with data from the current card
 	/// </summary>
-	public void UpdatePage()
+	public async void UpdatePage()
 	{
+		list_level.ItemsSource = new byte[10];
+
 		if (CurrentCard != null)
 		{
 			//TODO: Check for chached image before fetching the url image
