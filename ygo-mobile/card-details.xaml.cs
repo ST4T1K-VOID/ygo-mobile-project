@@ -3,7 +3,7 @@ namespace ygo_mobile;
 public partial class card_details : ContentPage
 {
 	//TODO: Remove mock data after testing
-    public Card? CurrentCard = new Card("46986416", "Dark Magician", "'The ultimate wizard in terms of attack and defense'", "Normal monster", "spellcaster", "DARK", 7, 2500, 2100);
+    public Card? CurrentCard = new Card("46986416", "Dark Magician", "'The ultimate wizard in terms of attack and defense'", "Normal monster", "Spellcaster", "DARK", 7, 2500, 2100);
 
     public card_details()
 	{
@@ -21,9 +21,9 @@ public partial class card_details : ContentPage
 	/// <summary>
 	/// Fills the page with data from the current card
 	/// </summary>
-	public async void UpdatePage()
+	public void UpdatePage()
 	{
-		list_level.ItemsSource = new byte[10];
+		list_level.ItemsSource = new int[12];
 
 		if (CurrentCard != null)
 		{
@@ -36,7 +36,7 @@ public partial class card_details : ContentPage
 			label_attribute.Text = CurrentCard.Attribute;
 
 			//cleans tribe value to match image naming conventions (alphanumeric & '_')
-			image_tribe.Source = ImageSource.FromFile($"tribe_{CurrentCard.Tribe.Replace("-", "").ToLower()}.png");
+			image_tribe.Source = ImageSource.FromFile($"tribe_{CurrentCard.Tribe.Replace("-", "")}.png");
 			label_tribe.Text = CurrentCard.Tribe;
 
 			label_name.Text = CurrentCard.Name;

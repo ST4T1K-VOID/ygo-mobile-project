@@ -23,7 +23,7 @@
         <HorizontalStackLayout>
             <!--CARD IMAGE-->
             <!--placeholder card image, min H264 W208 replaced with proper icon via [].xaml.cs-->
-            <Image x:Name="image_card" Source="placeholder_card.png" MinimumHeightRequest="1" MinimumWidthRequest="1" Margin="3"/>
+            <Image x:Name="image_card" Source="placeholder_card.png" MinimumHeightRequest="264" MinimumWidthRequest="208" Margin="3"/>
 
             <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Fill">
                 <!--ATTRIBUTE-->
@@ -51,19 +51,20 @@
             </VerticalStackLayout>
         </HorizontalStackLayout>
 
-            <!--RANK/LEVEL-->
-            <!--Default rank/level icon, hidden by default, shown as appropriate by [].xaml.cs-->
-        
-            <ListView x:Name="list_level">
-                <ListView.ItemTemplate>
+        <!--RANK/LEVEL-->
+        <!--Default rank/level icon, hidden by default, shown as appropriate by [].xaml.cs-->
+        <Border StrokeShape="RoundRectangle 10, 10, 10, 10" Margin="0, 5, 0 ,0">
+            <CollectionView ItemsLayout="HorizontalList" x:Name="list_level" HorizontalOptions="Center" Margin="0,3,0,3">
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="placeholder_level.png" HeightRequest="40" MinimumWidthRequest="20" MaximumWidthRequest="30" IsVisible="true"/>
+                        <Image Source="icon_level.png" MaximumHeightRequest="33"/>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView> 
+        </Border>
 
-        
-        <VerticalStackLayout Margin="3,0,3,0">
+
+            <VerticalStackLayout Margin="3,0,3,0">
             <Border>
                 <VerticalStackLayout>
                     <!--CARD NAME-->
