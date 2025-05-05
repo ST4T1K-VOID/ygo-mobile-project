@@ -35,33 +35,7 @@ namespace ygo_mobile
         //public List<string>? CardPrices { get; set; }
         //NOTE: might not keep this
 
-
-        /// <summary>
-        /// instatiates a Card
-        /// </summary>
-        /// <param name="iD"></param>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        /// <param name="type"></param>
-        /// <param name="tribe"></param>
-        /// <param name="attribute"></param>
-        /// <param name="level"></param>
-        /// <param name="atk"></param>
-        /// <param name="def"></param>
-        public Card(string iD, string name, string description, string type, string tribe, string attribute, int level, int atk, int def)
-        {
-            ID = iD;
-            Name = name;
-            Description = description;
-            Type = type;
-            Tribe = tribe;
-            Attribute = attribute;
-            Level = level;
-            Atk = atk;
-            Def = def;
-        }
-
-
+        
 
         public Image? UrlToImage(string key)
         {
