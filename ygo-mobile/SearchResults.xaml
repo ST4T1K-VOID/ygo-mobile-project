@@ -64,7 +64,7 @@
         
         <!--NAVIGATION/HEADER-->
 
-            <CollectionView x:Name="view_TEST" Style="{StaticResource layout_single}">
+            <CollectionView x:Name="collection_resulstsPortrait" Style="{StaticResource layout_single}">
             
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" Span="1"/>
@@ -77,19 +77,19 @@
                             <!--CARD IMAGE-->
                             <Image Grid.Column="0" Grid.RowSpan="2" Source="placeholder_card.png" HeightRequest="132" WidthRequest="104" Margin="3"/>
                             <!--CARD NAME-->
-                            <Label Grid.Column="1" Grid.ColumnSpan="2" Text="[CARD NAME]"/>
+                            <Label Grid.Column="1" Grid.ColumnSpan="2" Text="[CARD NAME]" Margin="0,5,0,0"/>
 
-                            <Image Grid.Column="1" Grid.Row="1" Source="placeholder_level.png" HeightRequest="80" WidthRequest="50"/>
-                            <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="12"/>
-                            <Image Grid.Column="2" Grid.Row="1" Source="placeholder_attribute.png" HeightRequest="80" WidthRequest="50"/>
-                            <Image Grid.Column="3" Grid.Row="1" Source="placeholder_type.png" HeightRequest="80" WidthRequest="50"/>
+                            <Image Grid.Column="1" Grid.Row="1" Source="placeholder_level.png" HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
+                            <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="1" FontAttributes="Bold" Margin="0,0,30,7"/>
+                            <Image Grid.Column="2" Grid.Row="1" Source="placeholder_attribute.png" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                            <Image Grid.Column="3" Grid.Row="1" Source="placeholder_type.png" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
                         </Grid>
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-            <CollectionView x:Name="view_TEST_grid" Style="{StaticResource layout_grid}">
+            <CollectionView x:Name="collection_resulstsLandscape" Style="{StaticResource layout_grid}">
 
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2"/>
@@ -97,24 +97,19 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <HorizontalStackLayout>
-                            
+                        
+                        <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
                             <!--CARD IMAGE-->
-                            <Image Source="placeholder_card.png" HeightRequest="132" WidthRequest="104" Margin="3"/>
+                            <Image Grid.Column="0" Grid.RowSpan="2" Source="placeholder_card.png" HeightRequest="132" WidthRequest="104" Margin="3"/>
+                            <!--CARD NAME-->
+                            <Label Grid.Column="1" Grid.ColumnSpan="2" Text="[CARD NAME]" Margin="0,5,0,0"/>
 
-                            <VerticalStackLayout>
-                                <!--CARD NAME-->
-                                <Label Text="[CARD NAME]"/>
-                                <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="3">
-                                    <!--RANK/LEVEL || ATTR. || TYPE-->
-                                    <Image Grid.Column="0" Source="placeholder_level.png" HeightRequest="50" WidthRequest="50"/>
-                                    <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Text="12"/>
-                                    <Image Grid.Column="1" Source="placeholder_attribute.png" HeightRequest="50" WidthRequest="50"/>
-                                    <Image Grid.Column="3" Source="placeholder_type.png" HeightRequest="50" WidthRequest="50"/>
-                                </Grid>
-                            </VerticalStackLayout>
+                            <Image Grid.Column="1" Grid.Row="1" Source="placeholder_level.png" HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
+                            <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="1" FontAttributes="Bold" Margin="0,0,30,7"/>
+                            <Image Grid.Column="2" Grid.Row="1" Source="placeholder_attribute.png" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                            <Image Grid.Column="3" Grid.Row="1" Source="placeholder_type.png" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
+                        </Grid>
 
-                        </HorizontalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
