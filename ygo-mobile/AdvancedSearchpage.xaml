@@ -13,34 +13,35 @@
         </HorizontalStackLayout>
 
         <!--TYPE-->
+        <!--TYPE e.g. spell/trap: continuous, field, quick. monster: effect, fusion, pendulum, pendulumeffect-->
         <!--Certain boxes and list change/(de)activate based on what TYPE is selected-->
-        <Picker/>
+        <Picker x:Name="picker_Type"/>
 
         <!--RANK/LEVEL-->
-        <Picker/>
+        <Picker x:Name="picker_LevelVal"/>
 
         <HorizontalStackLayout>
             <!--ATK VALUE-->
-            <Entry/>
-            <Picker/>
+            <Entry x:Name="entry_ATK"/>
+            <Picker x:Name="ppicker_ATKOperator"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <!--DEF VALUE-->
-            <Entry/>
-            <Picker/>
+            <Entry x:Name="entry_DEF"/>
+            <Picker x:Name="ppicker_DEFOperator"/>
         </HorizontalStackLayout>
         
         <!--ATTR./ELEMENT-->
-        <Picker/>
+        <Picker x:Name="picker_Attribute"/>
         <!--Tribe/"TYPE"-->
-        <Picker/>
+        <Picker x:Name="picker_Tribe"/>
         
         
 
         <!--GO/CLEAR-->
         <HorizontalStackLayout Spacing="2">
-            <Button/>
-            <Button/>
+            <Button x:Name="button_Go"/>
+            <Button x:Name="button_Clear"/>
         </HorizontalStackLayout>    
 
     </VerticalStackLayout>

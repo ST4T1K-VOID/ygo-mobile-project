@@ -5,9 +5,17 @@ public partial class advanced_searchpage : ContentPage
 	public advanced_searchpage()
 	{
 		InitializeComponent();
+        CardArchetypes = RecieveArchetypes();
 	}
 
     //pre-determined values for card: Type, Tribe, Attribute
+    private readonly List<string> CardKinds = new List<string>()
+    {
+        "Monster",
+        "Spell",
+        "Trap"
+    };
+
     private readonly List<string> CardType = new List<string>()
     {
         //--Main Deck Types--
@@ -95,4 +103,16 @@ public partial class advanced_searchpage : ContentPage
         "water",
         "wind"
     };
+
+    private List<string> CardArchetypes = new List<string>();
+
+    private List<string> RecieveArchetypes()
+    {
+        if (CardArchetypes.Count() == 0)
+        {
+            APIReqeustHandler requestHandler = new APIReqeustHandler();
+            return requestHandler.GetArchetypes();
+        }
+        return CardArchetypes;
+    }
 }
