@@ -32,30 +32,31 @@ namespace ygo_mobile
         //public Card_Prices[] card_prices { get; set; }
         //}
 
-    //public class Card_Sets
-    //{
-    //    public string set_name { get; set; }
-    //    public string set_code { get; set; }
-    //    public string set_rarity { get; set; }
-    //    public string set_rarity_code { get; set; }
-    //    public string set_price { get; set; }
-    //}
+        //public class Card_Sets
+        //{
+        //    public string set_name { get; set; }
+        //    public string set_code { get; set; }
+        //    public string set_rarity { get; set; }
+        //    public string set_rarity_code { get; set; }
+        //    public string set_price { get; set; }
+        //}
 
-    public class Card_Images
-    {
-        public int id { get; set; }
-        public string image_url { get; set; }
-        public string image_url_small { get; set; }
-        public string image_url_cropped { get; set; }
+        public class Card_Images
+        {
+            public int id { get; set; }
+            public string image_url { get; set; }
+            public string image_url_small { get; set; }
+            public string image_url_cropped { get; set; }
+        }
+
+        //public class Card_Prices
+        //{
+        //    public string cardmarket_price { get; set; }
+        //    public string tcgplayer_price { get; set; }
+        //    public string ebay_price { get; set; }
+        //    public string amazon_price { get; set; }
+        //    public string coolstuffinc_price { get; set; }
+        //}
     }
-
-    //public class Card_Prices
-    //{
-    //    public string cardmarket_price { get; set; }
-    //    public string tcgplayer_price { get; set; }
-    //    public string ebay_price { get; set; }
-    //    public string amazon_price { get; set; }
-    //    public string coolstuffinc_price { get; set; }
-    //}
 }
 
