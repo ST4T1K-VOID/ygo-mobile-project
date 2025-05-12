@@ -3,34 +3,125 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ygo_mobile.search_results"
              Title="search_results">
-    <VerticalStackLayout>
-        <!--TODO: add page navigation-->
-        <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Start">
-            <!-- back button/header-->
-            <ImageButton Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="Start"/>
-        </HorizontalStackLayout>
 
-        <!--TODO: tweak data template once functionality is added-->
-        <ListView>
-            <ListView.ItemTemplate>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <Style TargetType="CollectionView" x:Key="layout_grid">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="IsVisible" Value="Collapse"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="IsVisible" Value="Visible"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style TargetType="CollectionView" x:Key="layout_single">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="IsVisible" Value="Visible"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="IsVisible" Value="Collapse"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout>
+        
+        <!--NAVIGATION/HEADER-->
+
+            <CollectionView x:Name="view_TEST" Style="{StaticResource layout_single}">
+            
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="1"/>
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <HorizontalStackLayout HorizontalOptions="Start">
-                        <!--CARD IMAGE-->
-                        <Image Source="placeholder_card.png" MinimumHeightRequest="132" MinimumWidthRequest="104" Margin="3"/>
-                        <VerticalStackLayout>
+
+                        <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
+                            <!--CARD IMAGE-->
+                            <Image Grid.Column="0" Grid.RowSpan="2" Source="placeholder_card.png" HeightRequest="132" WidthRequest="104" Margin="3"/>
                             <!--CARD NAME-->
-                            <Label Text="[CARD NAME]"/>
-                            <HorizontalStackLayout>
-                                <!--TODO: figure out a way to have text overlay rank/level icon-->
-                                <!--RANK/LEVEL || ATTR. || TYPE-->
-                                <Image Source="placeholder_level.png"/>
-                                <Image Source="placeholder_attribute.png"/>
-                                <Image Source="placeholder_type.png"/>
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
+                            <Label Grid.Column="1" Grid.ColumnSpan="2" Text="[CARD NAME]"/>
+
+                            <Image Grid.Column="1" Grid.Row="1" Source="placeholder_level.png" HeightRequest="80" WidthRequest="50"/>
+                            <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Text="12"/>
+                            <Image Grid.Column="2" Grid.Row="1" Source="placeholder_attribute.png" HeightRequest="80" WidthRequest="50"/>
+                            <Image Grid.Column="3" Grid.Row="1" Source="placeholder_type.png" HeightRequest="80" WidthRequest="50"/>
+                        </Grid>
+
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+            <CollectionView x:Name="view_TEST_grid" Style="{StaticResource layout_grid}">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            
+                            <!--CARD IMAGE-->
+                            <Image Source="placeholder_card.png" HeightRequest="132" WidthRequest="104" Margin="3"/>
+
+                            <VerticalStackLayout>
+                                <!--CARD NAME-->
+                                <Label Text="[CARD NAME]"/>
+                                <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="3">
+                                    <!--RANK/LEVEL || ATTR. || TYPE-->
+                                    <Image Grid.Column="0" Source="placeholder_level.png" HeightRequest="50" WidthRequest="50"/>
+                                    <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Text="12"/>
+                                    <Image Grid.Column="1" Source="placeholder_attribute.png" HeightRequest="50" WidthRequest="50"/>
+                                    <Image Grid.Column="3" Source="placeholder_type.png" HeightRequest="50" WidthRequest="50"/>
+                                </Grid>
+                            </VerticalStackLayout>
+
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+    
 </ContentPage>
+ 
