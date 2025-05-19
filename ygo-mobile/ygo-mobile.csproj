@@ -50,9 +50,9 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Include="Resources\Images\icons_attribute\*"/>
-		<MauiImage Include="Resources\Images\icons_tribe\*"/>
-		<MauiImage Include="Resources\Images\icons_level\*"/>
+		<MauiImage Include="Resources\Images\icons_attribute\*" />
+		<MauiImage Include="Resources\Images\icons_tribe\*" />
+		<MauiImage Include="Resources\Images\icons_level\*" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -68,13 +68,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="advanced-searchpage.xaml">
+	  <Compile Update="AdvancedSearchpage.xaml.cs">
+	    <DependentUpon>AdvancedSearchpage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="CardDetails.xaml.cs">
+	    <DependentUpon>CardDetails.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SearchResults.xaml.cs">
+	    <DependentUpon>SearchResults.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="AdvancedSearchpage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="card-details.xaml">
+	  <MauiXaml Update="CardDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="search-results.xaml">
+	  <MauiXaml Update="SearchResults.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
