@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,22 @@ namespace ygo_mobile
 {
     class APIReqeustHandler
     {
-        public List<string> GetArchetypes()
+        public async Task<List<string>> GetArchetypes()
         {
-            return new List<string>();
+            HttpClient client = new HttpClient();
+
+            HttpResponseMessage httpResponseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, "https://db.ygoprodeck.com/api/v7/archetypes.php"));
+            string responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            
+            JArray array = JArray.Parse(responseString);
+            List<string> archetypes = new List<string>();
+            foreach (JObject token in array)
+            {
+                string type = token.GetValue("archetype_name").ToString();
+                archetypes.Add(type);
+            }
+            return archetypes;
         }
 
         public async Task<List<Card>> SendRequest(Dictionary<string, string> variables)
@@ -22,7 +36,7 @@ namespace ygo_mobile
             HttpResponseMessage httpResponseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, FormatReqeust(variables)));
 
             string responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-            ResponseObject Cards = JsonConvert.DeserializeObject<ResponseObject>(responseString);
+            CardResponseObject Cards = JsonConvert.DeserializeObject<CardResponseObject>(responseString);
 
             List<Card> cards = new List<Card>();
             foreach (Datum card in Cards.data)
@@ -30,10 +44,7 @@ namespace ygo_mobile
                 //cards.Add(new Card())
             }
 
-
-
             return new List<Card>();
-
         }
 
         private string FormatReqeust(Dictionary<string, string> variables)

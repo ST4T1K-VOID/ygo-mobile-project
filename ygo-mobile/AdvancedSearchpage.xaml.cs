@@ -2,11 +2,14 @@ namespace ygo_mobile;
 
 public partial class advanced_searchpage : ContentPage
 {
-	public advanced_searchpage()
+    private readonly APIReqeustHandler RequestHandler = new APIReqeustHandler();
+    public advanced_searchpage()
 	{
 		InitializeComponent();
-        CardArchetypes = RecieveArchetypes();
-	}
+        RetrieveArchetypes();
+    }
+
+
 
     //pre-determined values for card: Type, Tribe, Attribute
     private readonly List<string> CardKinds = new List<string>()
@@ -106,13 +109,15 @@ public partial class advanced_searchpage : ContentPage
 
     private List<string> CardArchetypes = new List<string>();
 
-    private List<string> RecieveArchetypes()
+    private async Task RetrieveArchetypes()
     {
         if (CardArchetypes.Count() == 0)
         {
-            APIReqeustHandler requestHandler = new APIReqeustHandler();
-            return requestHandler.GetArchetypes();
+            //ArchetypeResponseObject response = await RequestHandler.GetArchetypes();
+
+            //CardArchetypes = await RequestHandler.GetArchetypes();
+            picker_Attribute.ItemsSource = null;
+            picker_Attribute.ItemsSource = await RequestHandler.GetArchetypes();
         }
-        return CardArchetypes;
     }
 }
