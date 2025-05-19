@@ -6,6 +6,8 @@
     <VerticalStackLayout>
         <!--TODO: name/fname-->
 
+        <Entry x:Name="entry_cardName" Placeholder="search..." MinimumWidthRequest="350" MaximumWidthRequest="350" HorizontalOptions="Center"/>
+
         <!--KIND (Monster, spell, trap)-->
         <HorizontalStackLayout>
             <!--something here which changes which kind of card being search for-->
