@@ -6,19 +6,10 @@ public partial class advanced_searchpage : ContentPage
     public advanced_searchpage()
 	{
 		InitializeComponent();
-        RetrieveArchetypes();
+        SetPickers();
     }
 
-
-
     //pre-determined values for card: Type, Tribe, Attribute
-    private readonly List<string> CardKinds = new List<string>()
-    {
-        "Monster",
-        "Spell",
-        "Trap"
-    };
-
     private readonly List<string> CardType = new List<string>()
     {
         //--Main Deck Types--
@@ -109,15 +100,21 @@ public partial class advanced_searchpage : ContentPage
 
     private List<string> CardArchetypes = new List<string>();
 
+    private async Task SetPickers()
+    {
+        await RetrieveArchetypes();
+        picker_Type.ItemsSource = CardType;
+        picker_Tribe.ItemsSource = CardTribe;
+        picker_Attribute.ItemsSource = CardAttribute;
+    }
+
     private async Task RetrieveArchetypes()
     {
         if (CardArchetypes.Count() == 0)
         {
-            //ArchetypeResponseObject response = await RequestHandler.GetArchetypes();
-
-            //CardArchetypes = await RequestHandler.GetArchetypes();
-            picker_Attribute.ItemsSource = null;
-            picker_Attribute.ItemsSource = await RequestHandler.GetArchetypes();
+            CardArchetypes = await RequestHandler.GetArchetypes();
+            picker_Archetype.ItemsSource = null;
+            picker_Archetype.ItemsSource = await RequestHandler.GetArchetypes();
         }
     }
 }

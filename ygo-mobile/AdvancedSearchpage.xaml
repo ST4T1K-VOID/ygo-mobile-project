@@ -4,33 +4,51 @@
              x:Class="ygo_mobile.advanced_searchpage"
              Title="advanced_searchpage">
     <VerticalStackLayout>
-        <!--TODO: name/fname-->
-
-        <Entry x:Name="entry_cardName" Placeholder="search..." MinimumWidthRequest="350" MaximumWidthRequest="350" HorizontalOptions="Center"/>
+        <!--TODO: Remove Underline-->
+        <Border StrokeThickness="3" StrokeShape="RoundRectangle 10, 10, 10, 10" Margin="20,0">
+            <Entry x:Name="entry_cardName" Placeholder="search..." MinimumWidthRequest="350" MaximumWidthRequest="350" HorizontalOptions="Center"/>
+        </Border>
+        
 
         <!--KIND (Monster, spell, trap)-->
-        <HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
             <!--something here which changes which kind of card being search for-->
             <!--Certain boxes and list change based on what KIND is selected-->
+            <CheckBox x:Name=""/>
+            <Label VerticalOptions="Center" Text="Monster"/>
+            <CheckBox/>
+            <Label VerticalOptions="Center" Text="Spell"/>
+            <CheckBox/>
+            <Label VerticalOptions="Center" Text="Trap"/>
         </HorizontalStackLayout>
 
         <!--TYPE-->
         <!--TYPE e.g. spell/trap: continuous, field, quick. monster: effect, fusion, pendulum, pendulumeffect-->
         <!--Certain boxes and list change/(de)activate based on what TYPE is selected-->
-        <Picker x:Name="picker_Type"/>
+        <Label Text="Card Type" Margin="10, 0"/>
+        <Picker x:Name="picker_Type" Margin="5, 0"/>
+
+        <!--Archetype-->
+        <Label Text="Archetype" Margin="10, 0"/>
+        <Picker x:Name="picker_Archetype" Margin="5, 0"/>
 
         <!--RANK/LEVEL-->
-        <Picker x:Name="picker_LevelVal"/>
-
+        <Grid ColumnDefinitions="*, *, *, *, *">
+            <Label Text="Level" Margin="10, 0" VerticalOptions="Center"/>
+            <Button x:Name="button_levelMinus" Grid.Column="1" Text="--" FontAttributes="Bold" Clicked="button_levelMinus_Clicked" />
+            <Picker x:Name="picker_LevelVal" MinimumWidthRequest="80" Grid.Column="2"/>
+            <Button x:Name="button_levelPlus" Grid.Column="3" Text="+" FontAttributes="Bold" Clicked="button_levelPlus_Clicked" />
+        </Grid>
+            
         <HorizontalStackLayout>
             <!--ATK VALUE-->
             <Entry x:Name="entry_ATK"/>
-            <Picker x:Name="ppicker_ATKOperator"/>
+            <Picker x:Name="picker_ATKOperator"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <!--DEF VALUE-->
             <Entry x:Name="entry_DEF"/>
-            <Picker x:Name="ppicker_DEFOperator"/>
+            <Picker x:Name="picker_DEFOperator"/>
         </HorizontalStackLayout>
         
         <!--ATTR./ELEMENT-->
@@ -42,8 +60,8 @@
 
         <!--GO/CLEAR-->
         <HorizontalStackLayout Spacing="2">
-            <Button x:Name="button_Go"/>
-            <Button x:Name="button_Clear"/>
+            <Button x:Name="button_Go" Text="GO"/>
+            <Button x:Name="button_Clear" Text="CLEAR"/>
         </HorizontalStackLayout>    
 
     </VerticalStackLayout>
