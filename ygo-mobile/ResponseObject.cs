@@ -85,11 +85,6 @@ namespace ygo_mobile
             public string image_url { get; set; }
             public string image_url_small { get; set; }
             public string image_url_cropped { get; set; }
-
-            public Dictionary<string, string> GetImageURLs()
-            {
-                return new Dictionary<string, string> { { "image_url", image_url }, { "image_url_small", image_url_small }, { "image_url_cropped", image_url_cropped } };
-            }
         }
 
         //public class Card_Prices
