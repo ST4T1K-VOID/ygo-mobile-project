@@ -13,7 +13,17 @@ namespace ygo_mobile
         public string Description { get; set; }
         public string Type { get; set; }
         public string Tribe { get; set; } //known as 'race' by the API
-        public Dictionary<string, string>? CardImages { get; set; } 
+        public Dictionary<string, string>? CardImages { get; set; }
+
+        public Card(int iD, string name, string description, string type, string tribe, Dictionary<string, string> cardimages)
+        {
+            ID = iD.ToString();
+            Name = name;
+            Description = description;
+            Type = type;
+            Tribe = tribe;
+            CardImages = cardimages;
+        }
 
 
         public Image? UrlToImage(string key)
