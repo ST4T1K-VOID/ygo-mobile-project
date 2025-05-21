@@ -12,13 +12,11 @@
 
         <!--KIND (Monster, spell, trap)-->
         <HorizontalStackLayout HorizontalOptions="Center">
-            <!--something here which changes which kind of card being search for-->
-            <!--Certain boxes and list change based on what KIND is selected-->
-            <CheckBox x:Name=""/>
+            <CheckBox x:Name="checkbox_Monter" CheckedChanged="checkbox_Monter_CheckedChanged"/>
             <Label VerticalOptions="Center" Text="Monster"/>
-            <CheckBox/>
+            <CheckBox x:Name="checkbox_Spell" CheckedChanged="checkbox_Spell_CheckedChanged"/>
             <Label VerticalOptions="Center" Text="Spell"/>
-            <CheckBox/>
+            <CheckBox x:Name="checkbox_Trap" CheckedChanged="checkbox_Trap_CheckedChanged"/>
             <Label VerticalOptions="Center" Text="Trap"/>
         </HorizontalStackLayout>
 
