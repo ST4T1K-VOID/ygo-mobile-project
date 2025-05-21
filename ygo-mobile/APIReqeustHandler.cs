@@ -36,15 +36,10 @@ namespace ygo_mobile
             HttpResponseMessage httpResponseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, FormatReqeust(variables)));
 
             string responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-            CardResponseObject Cards = JsonConvert.DeserializeObject<CardResponseObject>(responseString);
 
-            List<Card> cards = new List<Card>();
-            foreach (Datum card in Cards.data)
-            {
-                //cards.Add(new Card())
-            }
+            ResponseObject Cards = JsonConvert.DeserializeObject<ResponseObject>(responseString);
 
-            return new List<Card>();
+            return Cards.ConvertToCards();
         }
 
         private string FormatReqeust(Dictionary<string, string> variables)
