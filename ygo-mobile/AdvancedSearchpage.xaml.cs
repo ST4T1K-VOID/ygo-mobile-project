@@ -117,4 +117,29 @@ public partial class advanced_searchpage : ContentPage
             picker_Archetype.ItemsSource = await RequestHandler.GetArchetypes();
         }
     }
+
+    private void button_levelMinus_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button_levelPlus_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void checkbox_Monter_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
+
+    private void checkbox_Spell_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
+
+    private void checkbox_Trap_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
 }
