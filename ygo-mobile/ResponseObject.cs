@@ -41,11 +41,8 @@ namespace ygo_mobile
                 }
 
             }
-
             return cards;
         }
-
-
     };
 
 

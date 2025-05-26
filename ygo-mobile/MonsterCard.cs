@@ -15,9 +15,9 @@ namespace ygo_mobile
         public string? Attribute { get; set; }
 
         // Link properties
-
         public int? LinkValue { get; set; }
         public List<string>? LinkMarkers { get; set; }
+
 
         public MonsterCard(int iD, string name, string description, string type, string tribe, Dictionary<string, string> cardimages,
             int? level, int? attack, int? defense, string? attribute, int? linkValue = null, List<string>? linkMakers = null)
