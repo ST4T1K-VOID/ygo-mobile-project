@@ -33,9 +33,19 @@ namespace ygo_mobile
         {
             HttpClient client = new HttpClient();
 
+            Console.WriteLine(FormatReqeust(variables));
+
             HttpResponseMessage httpResponseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, FormatReqeust(variables)));
 
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"{httpResponseMessage.StatusCode}");
+            }
+
             string responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            
+
 
             ResponseObject Cards = JsonConvert.DeserializeObject<ResponseObject>(responseString);
 
@@ -47,11 +57,25 @@ namespace ygo_mobile
             string urlString = "https://db.ygoprodeck.com/api/v7/cardinfo.php?";
             string requestString = string.Empty;
 
+            int count = 0;
             foreach (KeyValuePair<string, string> parameter in variables)
             {
-                requestString = requestString + parameter.Key + "=" + parameter.Value + "&";
+                if (count == 0)
+                {
+                    requestString = requestString + parameter.Key + "=" + parameter.Value;
+                    count++;
+                    continue;
+                }
+                if (count == (variables.Count - 1))
+                {
+                    break;
+                }
+                else
+                {
+                    requestString = requestString + "&" + parameter.Key + "=" + parameter.Value;
+                    count++;
+                }
             }
-
             return urlString + requestString;
         }
 
