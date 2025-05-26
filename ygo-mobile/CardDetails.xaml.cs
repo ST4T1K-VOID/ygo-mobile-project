@@ -1,56 +1,96 @@
+using Microsoft.Maui.Controls.Internals;
+
 namespace ygo_mobile;
 
 public partial class card_details : ContentPage
 {
-	//TODO: Remove mock data after testing
-    public Card? CurrentCard = new Card("46986416", "Dark Magician", "'The ultimate wizard in terms of attack and defense'", "Normal monster", "Spellcaster", "DARK", 7, 2500, 2100);
 
     public card_details()
 	{
 		InitializeComponent();
-		AddToImages(CurrentCard);
 		UpdatePage();
-    }
-
-	//TODO: remove after testing
-	public void AddToImages(Card card)
-	{
-		card.CardImages.Add("baseImage", "https://images.ygoprodeck.com/images/cards/46986414.jpg");
     }
 
 	/// <summary>
 	/// Fills the page with data from the current card
 	/// </summary>
-	public void UpdatePage()
+	public async void UpdatePage()
 	{
-		list_level.ItemsSource = new int[12];
+		//------remove------
+        APIReqeustHandler aPIReqeustHandler = new APIReqeustHandler();
+		string longname = "Endymion,%20the%20Mighty%20Master%20of%20Magic";
 
-		if (CurrentCard != null)
+        List<Card> cards = await aPIReqeustHandler.SendRequest(new Dictionary<string, string> { {"name","pot%20of%20greed" } });
+        MonsterCard currentCard = null;
+
+        Card card = cards[0];
+        //-------------------
+
+        if (card == null)
+        {
+            return;
+        }
+
+        try
+        {
+            image_card.Source = card.UrlToImage("image_url").Source;
+        }
+        catch
+        {
+            //use placeholder image
+        }
+
+        label_name.Text = card.Name;
+        label_cardName.Text = card.Name;
+        label_description.Text = card.Description;
+
+        //cleans tribe value to match image naming conventions (alphanumeric & '_')
+        image_tribe.Source = ImageSource.FromFile($"tribe_{card.Tribe.Replace("-", "").Replace(" ","")}.png");
+        label_tribe.Text = card.Tribe;
+        image_attribute.Source = ImageSource.FromFile($"attribute_{card.Type.Replace(" ", "")}.png");
+        label_attribute.Text = card.Type;
+
+
+        label_carddata.Text = $"{card.Tribe}||{card.Type}";
+
+
+		if (card is MonsterCard)
+		{
+            image_attribute.Source = ImageSource.FromFile($"attribute_{currentCard.Attribute}.png");
+            label_attribute.Text = currentCard.Attribute;
+
+            label_atk.Text = $"ATK: {currentCard.Atk.ToString()}|";
+            label_def.Text = $"|DEF: {currentCard.Def.ToString()}";
+            
+            if (currentCard.Type.Contains("XYZ"))
+            {
+                list_rank.ItemsSource = new byte[(int)currentCard.Level];
+                border_rank.IsVisible = true;
+            }
+            else
+            {
+                list_level.ItemsSource = new byte[(int)currentCard.Level];
+                border_level.IsVisible = true;
+            }
+            
+        }
+		if (currentCard is PendulumMonster)
+		{
+
+		}
+		
+
 		{
 			//TODO: Check for chached image before fetching the url image
 			//TODO: try/catch >> Image not found//placeholder image
-			image_card.Source = CurrentCard.UrlToImage("baseImage").Source;
 
 
-			image_attribute.Source = ImageSource.FromFile($"attribute_{CurrentCard.Attribute}.png");
-			label_attribute.Text = CurrentCard.Attribute;
 
-			//cleans tribe value to match image naming conventions (alphanumeric & '_')
-			image_tribe.Source = ImageSource.FromFile($"tribe_{CurrentCard.Tribe.Replace("-", "")}.png");
-			label_tribe.Text = CurrentCard.Tribe;
 
-			label_name.Text = CurrentCard.Name;
-			label_cardName.Text = CurrentCard.Name;
 
-			label_atk.Text = $"ATK: {CurrentCard.Atk.ToString()}|";
-			label_def.Text = $"|DEF: {CurrentCard.Def.ToString()}";
 
-			label_description.Text = $"{CurrentCard.Description}";
-
-			label_carddata.Text = $"{CurrentCard.Tribe}||{CurrentCard.Type}";
-			
 			return;
-        }
+		}
 		return;
 	}
 }
