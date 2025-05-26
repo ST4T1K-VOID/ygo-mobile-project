@@ -19,6 +19,5 @@ namespace ygo_mobile
         {
             Scale = scale;
         }
-
     }
 }

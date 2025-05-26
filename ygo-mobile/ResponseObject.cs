@@ -39,7 +39,6 @@ namespace ygo_mobile
                 {
                     cards.Add(new Card(card.id, card.name, card.desc, card.type, card.race, imageDictionary));
                 }
-
             }
             return cards;
         }
