@@ -18,6 +18,17 @@ namespace ygo_mobile
         : base(iD, name, description, type, tribe, cardimages, level, attack, defense, attribute)
         {
             Scale = scale;
+            SplitDescription();
+        }
+
+        private void SplitDescription()
+        {
+            int startIndex = Description.IndexOf("t ]") + 3;
+            int endIndex = Description.IndexOf("[ M") - 19;
+            PendDesc = Description.Substring(startIndex, endIndex).Trim();
+
+            startIndex = Description.IndexOf("[ Mon") + 18;
+            Description = Description.Substring(startIndex).Trim();
         }
     }
 }
