@@ -99,6 +99,9 @@
                         <Border Margin="3">
                             <VerticalStackLayout>
                                 <Label x:Name="label_carddata" Text="[TRIBE]||[TYPE]"/>
+                                <Border x:Name="border_pendulum_desc"  IsVisible="Collapse">
+                                    <Label x:Name="label_pend_description" Margin="2,0,2,0" Text="[PLACEHOLDER]" />
+                                </Border>
                                 <Label x:Name="label_description" Margin="2,0,2,0" Text="[PLACEHOLDER]" />
                             </VerticalStackLayout>
                         </Border>
