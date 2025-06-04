@@ -13,7 +13,8 @@ namespace ygo_mobile
         public string Description { get; set; }
         public string Type { get; set; }
         public string Tribe { get; set; } //known as 'race' by the API
-        public Dictionary<string, string>? CardImages { get; set; }
+        public Dictionary<string, Image>? CardImages { get; set; }
+        public ImageSource GeneralImage { get; set; }
 
         public Card(int iD, string name, string description, string type, string tribe, Dictionary<string, string> cardimages)
         {
@@ -22,25 +23,12 @@ namespace ygo_mobile
             Description = description;
             Type = type;
             Tribe = tribe;
-            CardImages = cardimages;
-        }
-
-
-        public Image? UrlToImage(string key)
-        {
-            if (CardImages == null)
+            CardImages = new Dictionary<string, Image>();
+            foreach (KeyValuePair<string, string> image in cardimages)
             {
-                return null;
+                CardImages.Add(image.Key, new Image { Source = image.Value});
             }
-            else if (CardImages.ContainsKey(key))
-            {
-                Image image = new Image { Source = CardImages[key] };
-                return image;
-            }
-            else
-            {
-                return null;
-            }
+            GeneralImage = CardImages["image"].Source;
         }
     }
 }
