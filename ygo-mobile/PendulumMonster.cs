@@ -23,6 +23,11 @@ namespace ygo_mobile
 
         private void SplitDescription()
         {
+            if (!Description.Contains("[ Pendulum Effect ]") && !Description.Contains("[ Monster Effect ]"))
+            {
+                return;
+            }
+
             int startIndex = Description.IndexOf("t ]") + 3;
             int endIndex = Description.IndexOf("[ M") - 19;
             PendDesc = Description.Substring(startIndex, endIndex).Trim();
