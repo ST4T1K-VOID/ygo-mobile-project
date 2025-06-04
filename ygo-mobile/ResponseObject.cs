@@ -18,26 +18,31 @@ namespace ygo_mobile
             {
                 Dictionary<string, string> imageDictionary = new Dictionary<string, string>
                 {
-                    { "image_url", card.card_images.First().image_url },
-                    { "image_url_small", card.card_images.First().image_url_small },
-                    { "image_url_cropped", card.card_images.First().image_url_cropped }
+                    { "image", card.card_images.First().image_url },
+                    { "ImageSmall", card.card_images.First().image_url_small },
+                    { "ImageCropped", card.card_images.First().image_url_cropped }
                 };
 
                 if (card.type.Contains("Pendulum"))
                 {
                     cards.Add(new PendulumMonster(card.id, card.name, card.desc, card.type, card.race, imageDictionary, card.level, card.atk, card.def, card.attribute, card.scale));
+                    Console.WriteLine(card);
                 }
                 else if (card.type.Contains("Link"))
                 {
                     cards.Add(new MonsterCard(card.id, card.name, card.desc, card.type, card.race, imageDictionary, card.level, card.atk, card.def, card.attribute, card.link, card.linkmarker));
+                    Console.WriteLine(card);
                 }
                 else if (card.type.Contains("Monster"))
                 {
                     cards.Add(new MonsterCard(card.id, card.name, card.desc, card.type, card.race, imageDictionary, card.level, card.atk, card.def, card.attribute));
+                    Console.WriteLine(card);
                 }
                 else
                 {
                     cards.Add(new Card(card.id, card.name, card.desc, card.type, card.race, imageDictionary));
+                    Console.WriteLine(card);
+
                 }
             }
             return cards;

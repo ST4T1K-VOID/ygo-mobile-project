@@ -44,9 +44,6 @@ namespace ygo_mobile
 
             string responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-            
-
-
             ResponseObject Cards = JsonConvert.DeserializeObject<ResponseObject>(responseString);
 
             return Cards.ConvertToCards();

@@ -19,12 +19,12 @@
     />
     <ShellContent
         Title="search-resutls"
-        ContentTemplate="{DataTemplate local:search_results}"
+        ContentTemplate="{DataTemplate local:SearchResults}"
         Route="search-results"
     />
     <ShellContent
         Title="advanced_searchpage"
-        ContentTemplate="{DataTemplate local:advanced_searchpage}"
+        ContentTemplate="{DataTemplate local:AdvancedSearchpage}"
         Route="advanced-searchpage"
     />
 </Shell>

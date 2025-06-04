@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ygo_mobile.advanced_searchpage"
-             Title="advanced_searchpage">
+             x:Class="ygo_mobile.AdvancedSearchpage"
+             Title="AdvancedSearchpage">
     <VerticalStackLayout>
         <!--TODO: Remove Underline-->
         <Border StrokeThickness="3" StrokeShape="RoundRectangle 10, 10, 10, 10" Margin="20,0">
@@ -12,14 +12,11 @@
 
         <!--KIND (Monster, spell, trap)-->
         <HorizontalStackLayout HorizontalOptions="Center">
-            <CheckBox x:Name="checkbox_Monter" CheckedChanged="checkbox_Monter_CheckedChanged"/>
+            <CheckBox x:Name="checkbox_Monster" CheckedChanged="checkbox_Monster_CheckedChanged"/>
             <Label VerticalOptions="Center" Text="Monster"/>
             <CheckBox x:Name="checkbox_Spell" CheckedChanged="checkbox_Spell_CheckedChanged"/>
-            <Label VerticalOptions="Center" Text="Spell"/>
-            <CheckBox x:Name="checkbox_Trap" CheckedChanged="checkbox_Trap_CheckedChanged"/>
-            <Label VerticalOptions="Center" Text="Trap"/>
+            <Label VerticalOptions="Center" Text="Spell/Trap"/>
         </HorizontalStackLayout>
-
         <!--TYPE-->
         <!--TYPE e.g. spell/trap: continuous, field, quick. monster: effect, fusion, pendulum, pendulumeffect-->
         <!--Certain boxes and list change/(de)activate based on what TYPE is selected-->
@@ -58,7 +55,7 @@
 
         <!--GO/CLEAR-->
         <HorizontalStackLayout Spacing="2">
-            <Button x:Name="button_Go" Text="GO"/>
+            <Button x:Name="button_Go" Text="GO" Clicked="button_Go_Clicked"/>
             <Button x:Name="button_Clear" Text="CLEAR"/>
         </HorizontalStackLayout>    
 

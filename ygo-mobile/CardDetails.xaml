@@ -89,8 +89,8 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="label_cardName" Text="[PLACEHOLDER]" FontSize="18" Padding="2,0,0,0" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" />
                             <HorizontalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="Center">
-                                <Label x:Name="label_atk" Text="[ATK]" FontSize="18" FontAttributes="Bold" />
-                                <Label x:Name="label_def" Text="[DEF]" FontSize="18" FontAttributes="Bold" />
+                                <Label x:Name="label_atk" Text="" FontSize="18" FontAttributes="Bold" />
+                                <Label x:Name="label_def" Text="" FontSize="18" FontAttributes="Bold" />
                             </HorizontalStackLayout>
 
                         </Grid>
@@ -98,7 +98,7 @@
                         <!--CARD DESC-->
                         <Border Margin="3">
                             <VerticalStackLayout>
-                                <Label x:Name="label_carddata" Text="[TRIBE]||[TYPE]"/>
+                                <Label x:Name="label_carddata" Text=""/>
                                 <Border x:Name="border_pendulum_desc"  IsVisible="Collapse">
                                     <Label x:Name="label_pend_description" Margin="2,0,2,0" Text="[PLACEHOLDER]" />
                                 </Border>

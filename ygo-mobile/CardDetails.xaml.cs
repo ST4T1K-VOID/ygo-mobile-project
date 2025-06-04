@@ -19,7 +19,7 @@ public partial class card_details : ContentPage
 		//------remove------
         APIReqeustHandler aPIReqeustHandler = new APIReqeustHandler();
 
-        List<Card> cards = await aPIReqeustHandler.SendRequest(new Dictionary<string, string> { {"type", "Pendulum Effect Monster" } });
+        List<Card> cards = await aPIReqeustHandler.SendRequest(new Dictionary<string, string> { {"type", "spell%20card" } });
         Card currentCard = cards[0];
         //-------------------
 
@@ -30,7 +30,7 @@ public partial class card_details : ContentPage
 
         try
         {
-            image_card.Source = currentCard.UrlToImage("image_url").Source;
+            image_card.Source = currentCard.CardImages["Image"].Source;
         }
         catch
         {
@@ -44,12 +44,12 @@ public partial class card_details : ContentPage
         //cleans tribe value to match image naming conventions (alphanumeric & '_')
         image_tribe.Source = ImageSource.FromFile($"tribe_{currentCard.Tribe.Replace("-", "").Replace(" ","")}.png");
         label_tribe.Text = currentCard.Tribe;
-        image_attribute.Source = ImageSource.FromFile($"attribute_{currentCard.Type.Replace(" ", "")}.png");
-        label_attribute.Text = currentCard.Type;
-
-
-        label_carddata.Text = $"{currentCard.Tribe}||{currentCard.Type}";
-
+        //use TYPE in place of ATTRIBUTE when a card does not have an ATTRIBUTE i.e. spell/trap cards
+        if (currentCard is not MonsterCard)
+        {
+            image_attribute.Source = ImageSource.FromFile($"attribute_{currentCard.Type.Replace(" ", "")}.png");
+            label_attribute.Text = currentCard.Type;
+        }
 
 		if (currentCard is MonsterCard)
 		{
@@ -60,7 +60,9 @@ public partial class card_details : ContentPage
 
             label_atk.Text = $"ATK: {ConvertedCard.Atk.ToString()}|";
             label_def.Text = $"|DEF: {ConvertedCard.Def.ToString()}";
-            
+
+            label_carddata.Text = $"{currentCard.Tribe}||{currentCard.Type.Replace(" Monster", "").Replace(" ", "||")}";
+
             if (ConvertedCard.Type.Contains("XYZ"))
             {
                 list_rank.ItemsSource = new byte[(int)ConvertedCard.Level];
@@ -75,7 +77,6 @@ public partial class card_details : ContentPage
             {
                 //display unique properties
             }
-            
         }
 		if (currentCard is PendulumMonster)
 		{
@@ -86,8 +87,6 @@ public partial class card_details : ContentPage
 
             //display unique properties
 		}
-		
-
 		return;
 	}
 }
