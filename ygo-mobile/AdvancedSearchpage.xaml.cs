@@ -1,16 +1,17 @@
 namespace ygo_mobile;
 
-public partial class advanced_searchpage : ContentPage
+public partial class AdvancedSearchpage : ContentPage
 {
+    private bool IsMonsterCard = false; 
     private readonly APIReqeustHandler RequestHandler = new APIReqeustHandler();
-    public advanced_searchpage()
+    public AdvancedSearchpage()
 	{
 		InitializeComponent();
         SetPickers();
     }
 
     //pre-determined values for card: Type, Tribe, Attribute
-    private readonly List<string> CardType = new List<string>()
+    private readonly List<string> CardTypes = new List<string>()
     {
         //--Main Deck Types--
         "Effect Monster",
@@ -41,53 +42,62 @@ public partial class advanced_searchpage : ContentPage
         "Synchro Tuner Monster",
         "XYZ Monster",
         "XYZ Pendulum Effect Monster",
-        //--Other Types--
-        "Skill Card",
-        "Token"
     };
 
-    private readonly List<String> CardTribe = new List<string>()
-    { 
-        //--Monster Tribes--
-        "Aqua",
-        "Beast",
-        "Beast-Warrior",
-        "Creator-God",
-        "Cyberse",
-        "Dinosaur",
-        "Divine-Beast",
-        "Dragon",
-        "Fairy",
-        "Fiend",
-        "Fish",
-        "Insect",
-        "Machine",
-        "Plant",
-        "Psychic",
-        "Pyro",
-        "Reptile",
-        "Rock",
-        "Sea Serpent",
-        "Spellcaster",
-        "Thunder",
-        "Warrior",
-        "Winged Beast",
-        "Wyrm",
-        "Zombie",
-        //--Spell Tribes--
-        "Normal",
-        "Field",
-        "Equip",
-        "Continuous",
-        "Quick-Play",
-        "Ritual",
-        //--Trap Tribes--
-        "Normal",
-        "Continuous",
-        "Counter"
+    private readonly Dictionary<string, List<string>> CardTribes = new Dictionary<string, List<string>>
+    {
+        {
+        "Monster Tribes",
+        [
+            "Aqua",
+            "Beast",
+            "Beast-Warrior",
+            "Creator-God",
+            "Cyberse",
+           "Dinosaur",
+            "Divine-Beast",
+            "Dragon",
+            "Fairy",
+            "Fiend",
+            "Fish",
+            "Insect",
+            "Machine",
+            "Plant",
+            "Psychic",
+            "Pyro",
+           "Reptile",
+           "Rock",
+            "Sea Serpent",
+           "Spellcaster",
+           "Thunder",
+            "Warrior",
+           "Winged Beast",
+           "Wyrm",
+           "Zombie"
+            ]
+        },
+        {
+        "Spell Tribes",
+        [
+            "Normal",
+            "Field",
+            "Equip",
+            "Continuous",
+            "Quick-Play",
+            "Ritual"
+        ]
+        },
+        {
+        "Trap Tribes",
+        [
+            "Normal",
+            "Continuous",
+            "Counter"
+        ]
+        }
     };
 
-    private readonly List<string> CardAttribute = new List<string>()
+    private readonly List<string> CardAttributes = new List<string>()
     {
         "dark",
         "divine",
@@ -102,10 +112,12 @@ public partial class advanced_searchpage : ContentPage
 
     private async Task SetPickers()
     {
-        await RetrieveArchetypes();
-        picker_Type.ItemsSource = CardType;
-        picker_Tribe.ItemsSource = CardTribe;
-        picker_Attribute.ItemsSource = CardAttribute;
+        if (IsMonsterCard)
+        {
+        }
+        else
+        {
+        }
     }
 
     private async Task RetrieveArchetypes()
@@ -118,6 +130,11 @@ public partial class advanced_searchpage : ContentPage
         }
     }
 
+    private Dictionary<string, string> PackParameters()
+    {
+        return new Dictionary<string, string>();
+    }
+
     private void button_levelMinus_Clicked(object sender, EventArgs e)
     {
 
@@ -128,18 +145,47 @@ public partial class advanced_searchpage : ContentPage
 
     }
 
-    private void checkbox_Monter_CheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
 
+    // Prevents both or neither checkboxes being checked
+    private void checkbox_Monster_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (checkbox_Monster.IsChecked == true)
+        {
+            checkbox_Spell.IsChecked = false;
+            IsMonsterCard = true;
+        }
+        else if (checkbox_Monster.IsChecked == false && checkbox_Spell.IsChecked == false)
+        {
+            checkbox_Monster.IsChecked = true;
+            IsMonsterCard = true;
+        }
     }
 
     private void checkbox_Spell_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-
+        if (checkbox_Spell.IsChecked == true)
+        {
+            checkbox_Monster.IsChecked = false;
+            IsMonsterCard = false;
+        }
+        else if (checkbox_Monster.IsChecked == false && checkbox_Spell.IsChecked == false)
+        {
+            checkbox_Spell.IsChecked = true;
+            IsMonsterCard = false;
+        }
     }
 
-    private void checkbox_Trap_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    //Navigation
+    private async void button_Go_Clicked(object sender, EventArgs e)
     {
+        APIReqeustHandler reqeustHandler = new APIReqeustHandler();
 
+        List<Card> searchResults = await reqeustHandler.SendRequest(PackParameters());
+        if (searchResults == null)
+        {
+            //critical problem
+            //display error, throw exception
+        }
+        await Navigation.PushModalAsync(new SearchResults(searchResults));
     }
 }
