@@ -1,16 +1,21 @@
 namespace ygo_mobile;
 
-public partial class search_results : ContentPage
+public partial class SearchResults : ContentPage
 {
-	public search_results()
+	List<Card> Cards = new List<Card>();
+
+	public SearchResults( List<Card> cards = null)
 	{
 		InitializeComponent();
 		testFunc();
+		//if cards == empty display no results found message
 	}
 
-	public void testFunc()
+	public async void testFunc()
 	{
-        collection_resulstsPortrait.ItemsSource = new byte[8];
-        collection_resulstsLandscape.ItemsSource = new byte[8];
-    }
+        APIReqeustHandler handler = new APIReqeustHandler();
+		Cards = await handler.SendRequest(new Dictionary<string, string> { { "fname", "toon" } });
+
+        collection_resulstsPortrait.ItemsSource = Cards;
+	}
 }
