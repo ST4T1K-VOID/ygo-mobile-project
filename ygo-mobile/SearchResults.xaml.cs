@@ -19,7 +19,8 @@ public partial class SearchResults : ContentPage
 		Cards = await handler.SendRequest(new Dictionary<string, string> { { "fname", "toon" } });
 
         collection_resulstsPortrait.ItemsSource = Cards;
-	}
+        collection_resulstsLandscape.ItemsSource = Cards;
+    }
 
     private async void collection_resulstsPortrait_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
