@@ -7,36 +7,37 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--General-->
-            <!--<DataTemplate x:Key="CardDisplay_General">
-                <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
-                    --><!--CARD IMAGE--><!--
-                    <Image x:Name="test_hello" Grid.Column="0" Grid.RowSpan="2" Source="{Binding Card.CardImages.Image.Source}" HeightRequest="132" WidthRequest="104" Margin="3"/>
-                    --><!--CARD NAME--><!--
-                    <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Card.Name}" Margin="0,5,0,0"/>
+            
+            <!--Data Templates-->
+            <DataTemplate x:Key="displayTemplate_general">
+                <Border>
+                    <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HeightRequest="132" WidthRequest="104" Margin="3"/>
+                        <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" Margin="0,5,0,0"/>
 
-                    <Image Grid.Column="2" Grid.Row="1" Source="attribute_spellcard.png" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
-                    <Image Grid.Column="3" Grid.Row="1" Source="attribute_spellcard.png" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
-                </Grid>
+                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>                        
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            <DataTemplate x:Key="displayTemplate_monster">
+                <Border>
+                    <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HeightRequest="132" WidthRequest="104" Margin="3"/>
+                        <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" Margin="0,5,0,0"/>
+
+                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
+                        
+                        <Image Grid.Column="3" Grid.Row="1" Source="icon_level.png" HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
+                        <Label Grid.Column="3" Grid.Row="1" Text="{Binding Level}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,30,7"/>
+                    </Grid>
+                </Border>
             </DataTemplate>
 
-            --><!--Monster--><!--
-            <DataTemplate x:Key="CardDisplay_Monster">
-                <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
-                    --><!--CARD IMAGE--><!--
-                    <Image Grid.Column="0" Grid.RowSpan="2" Source="placeholder_card.png" HeightRequest="132" WidthRequest="104" Margin="3"/>
-                    --><!--CARD NAME--><!--
-                    <Label Grid.Column="1" Grid.ColumnSpan="2" Text="[CARD NAME]" Margin="0,5,0,0"/>
+            <control:CardDisplayType x:Key="DisplayTemplateSelector" GeneralTemplate="{StaticResource displayTemplate_general}" MonsterTemplate="{StaticResource displayTemplate_monster}"/>
 
-                    <Image Grid.Column="1" Grid.Row="1" Source="icon_level.png" HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
-                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Level}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,30,7"/>
-                    <Image Grid.Column="2" Grid.Row="1" Source="placeholder_attribute.png" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
-                    <Image Grid.Column="3" Grid.Row="1" Source="placeholder_type.png" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
-                </Grid>
-            </DataTemplate>-->
-
-            <!--<control:CardDisplayType x:Key="CardDisplay" GeneralTemplate="{StaticResource CardDisplay_General}" MonsterTemplate="{StaticResource CardDisplay_Monster}"/>-->
-            
             <!--ORIETATION-->
             <Style TargetType="CollectionView" x:Key="layout_grid">
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -95,35 +96,19 @@
 
             <!--TODO: NAVIGATION/HEADER-->
 
-
-            <CollectionView x:Name="collection_resulstsPortrait" Style="{StaticResource layout_single}">
+            <CollectionView x:Name="collection_resulstsPortrait" Style="{StaticResource layout_single}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="1"/>
                 </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border>
-                            <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
-                                <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HeightRequest="132" WidthRequest="104" Margin="3"/>
-                                <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" Margin="0,5,0,0"/>
-
-                                <Image Grid.Column="2" Grid.Row="1" Source="attribute_spellcard.png" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
-                                <Image Grid.Column="3" Grid.Row="1" Source="attribute_spellcard.png" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
             </CollectionView>
             
-
-
             <!--LANDSCAPE-->
-            <!--<CollectionView x:Name="collection_resulstsLandscape" ItemTemplate="{StaticResource control:CardDisplayType}" Style="{StaticResource layout_grid}">
+            <CollectionView x:Name="collection_resulstsLandscape" Style="{StaticResource layout_grid}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2"/>
                 </CollectionView.ItemsLayout>
-            </CollectionView>-->
-
+            </CollectionView>
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
