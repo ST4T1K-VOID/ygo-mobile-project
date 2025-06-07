@@ -96,14 +96,14 @@
 
             <!--TODO: NAVIGATION/HEADER-->
 
-            <CollectionView x:Name="collection_resulstsPortrait" Style="{StaticResource layout_single}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
+            <CollectionView x:Name="collection_resulstsPortrait" SelectionChanged="collection_resulstsPortrait_SelectionChanged" SelectionMode="Single" Style="{StaticResource layout_single}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="1"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
             
             <!--LANDSCAPE-->
-            <CollectionView x:Name="collection_resulstsLandscape" Style="{StaticResource layout_grid}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
+            <CollectionView x:Name="collection_resulstsLandscape" SelectionChanged="collection_resulstsLandscape_SelectionChanged" SelectionMode="Single" Style="{StaticResource layout_grid}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2"/>
                 </CollectionView.ItemsLayout>
