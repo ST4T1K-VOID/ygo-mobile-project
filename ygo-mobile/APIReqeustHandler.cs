@@ -48,7 +48,7 @@ namespace ygo_mobile
 
             return Cards.ConvertToCards();
         }
-
+        
         private string FormatReqeust(Dictionary<string, string> variables)
         {
             string urlString = "https://db.ygoprodeck.com/api/v7/cardinfo.php?";
@@ -75,14 +75,5 @@ namespace ygo_mobile
             }
             return urlString + requestString;
         }
-
-
-
-
     }
-
-
-
-
-
 }

@@ -2,10 +2,10 @@ using Microsoft.Maui.Controls.Internals;
 
 namespace ygo_mobile;
 
-public partial class card_details : ContentPage
+public partial class cardDetails : ContentPage
 {
 
-    public card_details()
+    public cardDetails()
 	{
 		InitializeComponent();
 		UpdatePage();

@@ -14,7 +14,7 @@
     />
     <ShellContent
         Title="Card-Details"
-        ContentTemplate="{DataTemplate local:card_details}"
+        ContentTemplate="{DataTemplate local:cardDetails}"
         Route="card-details"
     />
     <ShellContent
