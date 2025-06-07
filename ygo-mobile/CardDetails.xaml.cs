@@ -4,9 +4,10 @@ namespace ygo_mobile;
 
 public partial class cardDetails : ContentPage
 {
-
-    public cardDetails()
+    Card CurrentCard = null;
+    public cardDetails(Card selectedCard)
 	{
+        CurrentCard = selectedCard;
 		InitializeComponent();
 		UpdatePage();
     }
@@ -16,44 +17,38 @@ public partial class cardDetails : ContentPage
 	/// </summary>
 	public async void UpdatePage()
 	{
-		//------remove------
-        APIReqeustHandler aPIReqeustHandler = new APIReqeustHandler();
-
-        List<Card> cards = await aPIReqeustHandler.SendRequest(new Dictionary<string, string> { {"type", "spell%20card" } });
-        Card currentCard = cards[0];
-        //-------------------
-
-        if (currentCard == null)
+        if (CurrentCard == null)
         {
+            //display error "card undefined"
             return;
         }
 
         try
         {
-            image_card.Source = currentCard.CardImages["Image"].Source;
+            image_card.Source = CurrentCard.CardImages["image"].Source;
         }
         catch
         {
             //use placeholder image
         }
 
-        label_name.Text = currentCard.Name;
-        label_cardName.Text = currentCard.Name;
-        label_description.Text = currentCard.Description;
+        label_name.Text = CurrentCard.Name;
+        label_cardName.Text = CurrentCard.Name;
+        label_description.Text = CurrentCard.Description;
 
         //cleans tribe value to match image naming conventions (alphanumeric & '_')
-        image_tribe.Source = ImageSource.FromFile($"tribe_{currentCard.Tribe.Replace("-", "").Replace(" ","")}.png");
-        label_tribe.Text = currentCard.Tribe;
+        image_tribe.Source = ImageSource.FromFile($"tribe_{CurrentCard.Tribe.Replace("-", "").Replace(" ","")}.png");
+        label_tribe.Text = CurrentCard.Tribe;
         //use TYPE in place of ATTRIBUTE when a card does not have an ATTRIBUTE i.e. spell/trap cards
-        if (currentCard is not MonsterCard)
+        if (CurrentCard is not MonsterCard)
         {
-            image_attribute.Source = ImageSource.FromFile($"attribute_{currentCard.Type.Replace(" ", "")}.png");
-            label_attribute.Text = currentCard.Type;
+            image_attribute.Source = ImageSource.FromFile($"attribute_{CurrentCard.Type.Replace(" ", "")}.png");
+            label_attribute.Text = CurrentCard.Type;
         }
 
-		if (currentCard is MonsterCard)
+		if (CurrentCard is MonsterCard)
 		{
-            MonsterCard ConvertedCard = (MonsterCard)currentCard;
+            MonsterCard ConvertedCard = (MonsterCard)CurrentCard;
 
             image_attribute.Source = ImageSource.FromFile($"attribute_{ConvertedCard.Attribute}.png");
             label_attribute.Text = ConvertedCard.Attribute;
@@ -61,7 +56,7 @@ public partial class cardDetails : ContentPage
             label_atk.Text = $"ATK: {ConvertedCard.Atk.ToString()}|";
             label_def.Text = $"|DEF: {ConvertedCard.Def.ToString()}";
 
-            label_carddata.Text = $"{currentCard.Tribe}||{currentCard.Type.Replace(" Monster", "").Replace(" ", "||")}";
+            label_carddata.Text = $"{CurrentCard.Tribe}||{CurrentCard.Type.Replace(" Monster", "").Replace(" ", "||")}";
 
             if (ConvertedCard.Type.Contains("XYZ"))
             {
@@ -78,9 +73,9 @@ public partial class cardDetails : ContentPage
                 //display unique properties
             }
         }
-		if (currentCard is PendulumMonster)
+		if (CurrentCard is PendulumMonster)
 		{
-            PendulumMonster ConvertedCard = (PendulumMonster)currentCard;
+            PendulumMonster ConvertedCard = (PendulumMonster)CurrentCard;
 
             label_pend_description.Text = ConvertedCard.PendDesc;
             border_pendulum_desc.IsVisible = true;
