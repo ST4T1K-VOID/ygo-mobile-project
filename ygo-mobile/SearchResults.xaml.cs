@@ -7,6 +7,8 @@ public partial class SearchResults : ContentPage
 	public SearchResults( List<Card> cards = null)
 	{
 		InitializeComponent();
+		//collection_resulstsPortrait.SelectedItem = null;
+		//collection_resulstsLandscape.SelectedItem = null;
 		testFunc();
 		//if cards == empty display no results found message
 	}
@@ -18,4 +20,30 @@ public partial class SearchResults : ContentPage
 
         collection_resulstsPortrait.ItemsSource = Cards;
 	}
+
+    private async void collection_resulstsPortrait_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+		try
+		{
+			await Navigation.PushModalAsync(new cardDetails(collection_resulstsPortrait.SelectedItem as Card));
+        }
+		catch
+		{
+			//display error "something went wrong"
+			return;
+		}
+    }
+
+    private async void collection_resulstsLandscape_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        try
+        {
+            await Navigation.PushModalAsync(new cardDetails(collection_resulstsLandscape.SelectedItem as Card));
+        }
+        catch
+        {
+            //display error "something went wrong"
+            return;
+        }
+    }
 }
