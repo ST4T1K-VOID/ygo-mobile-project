@@ -29,6 +29,8 @@ namespace ygo_mobile
             Attribute = attribute;
             LinkValue = linkValue;
             LinkMarkers = new List<string>();
-        }
+
+            AttributeImage = new Image { Source = $"attribute_{Attribute.Replace(" ", "")}.png" }.Source;
+    }
     }
 }

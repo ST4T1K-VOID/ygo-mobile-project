@@ -14,7 +14,10 @@ namespace ygo_mobile
         public string Type { get; set; }
         public string Tribe { get; set; } //known as 'race' by the API
         public Dictionary<string, Image>? CardImages { get; set; }
+
         public ImageSource GeneralImage { get; set; }
+        public ImageSource AttributeImage { get; set; }
+        public ImageSource TribeImage { get; set; }
 
         public Card(int iD, string name, string description, string type, string tribe, Dictionary<string, string> cardimages)
         {
@@ -29,6 +32,9 @@ namespace ygo_mobile
                 CardImages.Add(image.Key, new Image { Source = image.Value});
             }
             GeneralImage = CardImages["image"].Source;
+
+            AttributeImage = ImageSource.FromFile($"attribute_{Type.Replace(" ", "")}.png");
+            TribeImage = ImageSource.FromFile($"tribe_{Tribe.Replace(" ", "").Replace("-","")}.png");
         }
     }
 }
