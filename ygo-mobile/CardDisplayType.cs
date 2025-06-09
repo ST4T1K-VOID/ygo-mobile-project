@@ -13,7 +13,14 @@ namespace ygo_mobile
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            return ((Card)item).Type.Contains("Monster") ? MonsterTemplate : GeneralTemplate;
+            if (item is Card card)
+            {
+                return card.Type.Contains("Monster") ? MonsterTemplate : GeneralTemplate;
+            }
+            else
+            {
+                throw new InvalidCastException("Object is not Type Card");
+            }
         }
     }
 }
