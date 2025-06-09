@@ -4,60 +4,64 @@
              x:Class="ygo_mobile.AdvancedSearchpage"
              Title="AdvancedSearchpage">
     <VerticalStackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton x:Name="button_back" Clicked="button_back_Clicked" Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0"/>
+        </Grid>
+
         <!--TODO: Remove Underline-->
         <Border StrokeThickness="3" StrokeShape="RoundRectangle 10, 10, 10, 10" Margin="20,0">
             <Entry x:Name="entry_cardName" Placeholder="search..." MinimumWidthRequest="350" MaximumWidthRequest="350" HorizontalOptions="Center"/>
         </Border>
         
-
         <!--KIND (Monster, spell, trap)-->
         <HorizontalStackLayout HorizontalOptions="Center">
             <CheckBox x:Name="checkbox_Monster" CheckedChanged="checkbox_Monster_CheckedChanged"/>
             <Label VerticalOptions="Center" Text="Monster"/>
             <CheckBox x:Name="checkbox_Spell" CheckedChanged="checkbox_Spell_CheckedChanged"/>
-            <Label VerticalOptions="Center" Text="Spell/Trap"/>
+            <Label VerticalOptions="Center" Text="Spell"/>
+            <CheckBox x:Name="checkbox_Trap"  CheckedChanged="checkbox_Trap_CheckedChanged"/>
+            <Label VerticalOptions="Center" Text="Trap"/>
         </HorizontalStackLayout>
-        <!--TYPE-->
-        <!--TYPE e.g. spell/trap: continuous, field, quick. monster: effect, fusion, pendulum, pendulumeffect-->
-        <!--Certain boxes and list change/(de)activate based on what TYPE is selected-->
-        <Label Text="Card Type" Margin="10, 0"/>
-        <Picker x:Name="picker_Type" Margin="5, 0"/>
+
+        <!--Tribe/"TYPE"-->
+        <Label Text="Card Tribe" Margin="10, 0"/>
+        <Picker x:Name="picker_Tribe"/>
 
         <!--Archetype-->
         <Label Text="Archetype" Margin="10, 0"/>
         <Picker x:Name="picker_Archetype" Margin="5, 0"/>
 
+        <!--TYPE-->
+        <!--TYPE e.g. spell/trap: continuous, field, quick. monster: effect, fusion, pendulum, pendulumeffect-->
+        <!--Certain boxes and list change/(de)activate based on what TYPE is selected-->
+        <Label Text="Card Type" Margin="10, 0"/>
+        <Picker x:Name="picker_Type" Margin="5, 0" IsEnabled="False"/>
+
+        <!--ATTR./ELEMENT-->
+        <Label Text="Attribute" Margin="10, 0"/>
+        <Picker x:Name="picker_Attribute" IsEnabled="False"/>
+
         <!--RANK/LEVEL-->
         <Grid ColumnDefinitions="*, *, *, *, *">
             <Label Text="Level" Margin="10, 0" VerticalOptions="Center"/>
-            <Button x:Name="button_levelMinus" Grid.Column="1" Text="--" FontAttributes="Bold" Clicked="button_levelMinus_Clicked" />
-            <Picker x:Name="picker_LevelVal" MinimumWidthRequest="80" Grid.Column="2"/>
+            <Button x:Name="button_levelMinus" Grid.Column="1" Text="-" FontAttributes="Bold" Clicked="button_levelMinus_Clicked" IsEnabled="False"/>
+            <Label x:Name="label_LevelVal" MinimumWidthRequest="80" Grid.Column="2" Text="0" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
             <Button x:Name="button_levelPlus" Grid.Column="3" Text="+" FontAttributes="Bold" Clicked="button_levelPlus_Clicked" />
         </Grid>
             
-        <HorizontalStackLayout>
-            <!--ATK VALUE-->
-            <Entry x:Name="entry_ATK"/>
-            <Picker x:Name="picker_ATKOperator"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout>
-            <!--DEF VALUE-->
-            <Entry x:Name="entry_DEF"/>
-            <Picker x:Name="picker_DEFOperator"/>
-        </HorizontalStackLayout>
-        
-        <!--ATTR./ELEMENT-->
-        <Picker x:Name="picker_Attribute"/>
-        <!--Tribe/"TYPE"-->
-        <Picker x:Name="picker_Tribe"/>
-        
-        
-
         <!--GO/CLEAR-->
         <HorizontalStackLayout Spacing="2">
             <Button x:Name="button_Go" Text="GO" Clicked="button_Go_Clicked"/>
             <Button x:Name="button_Clear" Text="CLEAR"/>
         </HorizontalStackLayout>    
 
+        <!--TODO: language preference see: session 11-->
+        
     </VerticalStackLayout>
 </ContentPage>

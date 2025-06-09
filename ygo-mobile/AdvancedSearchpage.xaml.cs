@@ -1,13 +1,13 @@
 namespace ygo_mobile;
 
 public partial class AdvancedSearchpage : ContentPage
-{
-    private bool IsMonsterCard = false; 
+{ 
     private readonly APIReqeustHandler RequestHandler = new APIReqeustHandler();
     public AdvancedSearchpage()
 	{
 		InitializeComponent();
-        SetPickers();
+        RetrieveArchetypes();
+        picker_Attribute.ItemsSource = CardAttributes;
     }
 
     //pre-determined values for card: Type, Tribe, Attribute
@@ -27,10 +27,8 @@ public partial class AdvancedSearchpage : ContentPage
         "Pendulum Tuner Effect Monster",
         "Ritual Effect Monster",
         "Ritual Monster",
-        "Spell Card",
         "Spirit Monster",
         "Toon Monster",
-        "Trap Card",
         "Tuner Monster",
         "Union Effect Monster",
         //--Extra Deck Types--
@@ -110,13 +108,45 @@ public partial class AdvancedSearchpage : ContentPage
 
     private List<string> CardArchetypes = new List<string>();
 
-    private async Task SetPickers()
+    private void SetItemSources()
     {
-        if (IsMonsterCard)
+        picker_Type.ItemsSource = CardTypes;
+        picker_Tribe.ItemsSource = null;
+        if (checkbox_Monster.IsChecked)
         {
+            picker_Type.IsEnabled = true;
+            picker_Attribute.IsEnabled = true;
+
+            button_levelPlus.IsEnabled = true;
+            button_levelMinus.IsEnabled = false;
+
+            picker_Tribe.ItemsSource = CardTribes["Monster Tribes"];
         }
-        else
+        else if (checkbox_Spell.IsChecked)
         {
+            picker_Type.IsEnabled = false;
+            picker_Type.SelectedItem = null;
+            picker_Attribute.IsEnabled = false;
+            picker_Attribute.SelectedItem = null;
+
+            button_levelPlus.IsEnabled = false;
+            button_levelMinus.IsEnabled = false;
+            label_LevelVal.Text = "0";
+
+            picker_Tribe.ItemsSource = CardTribes["Spell Tribes"];
+        }
+        else if (checkbox_Trap.IsChecked)
+        {
+            picker_Type.IsEnabled = false;
+            picker_Type.SelectedItem = null;
+            picker_Attribute.IsEnabled = false;
+            picker_Attribute.SelectedItem = null;
+
+            button_levelPlus.IsEnabled = false;
+            button_levelMinus.IsEnabled = false;
+            label_LevelVal.Text = "0";
+
+            picker_Tribe.ItemsSource = CardTribes["Trap Tribes"];
         }
     }
 
@@ -124,7 +154,6 @@ public partial class AdvancedSearchpage : ContentPage
     {
         if (CardArchetypes.Count() == 0)
         {
-            CardArchetypes = await RequestHandler.GetArchetypes();
             picker_Archetype.ItemsSource = null;
             picker_Archetype.ItemsSource = await RequestHandler.GetArchetypes();
         }
@@ -135,16 +164,37 @@ public partial class AdvancedSearchpage : ContentPage
         return new Dictionary<string, string>();
     }
 
+    //EVENTS
+
     private void button_levelMinus_Clicked(object sender, EventArgs e)
     {
-
+        button_levelPlus.IsEnabled = true;
+        if (label_LevelVal.Text == "0")
+        {
+            return;
+        }
+        if (int.TryParse(label_LevelVal.Text, out int value))
+        {
+            label_LevelVal.Text = (value - 1).ToString();
+            if ((value - 1) == 0)
+            {
+                button_levelMinus.IsEnabled = false;
+            }
+        }
     }
 
     private void button_levelPlus_Clicked(object sender, EventArgs e)
     {
-
+        if (int.TryParse(label_LevelVal.Text, out int value))
+        {
+            button_levelMinus.IsEnabled = true;
+            label_LevelVal.Text = (value + 1).ToString();
+            if ((value + 1) == 12)
+            {
+                button_levelPlus.IsEnabled = false;
+            }
+        }
     }
-
 
     // Prevents both or neither checkboxes being checked
     private void checkbox_Monster_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -152,12 +202,12 @@ public partial class AdvancedSearchpage : ContentPage
         if (checkbox_Monster.IsChecked == true)
         {
             checkbox_Spell.IsChecked = false;
-            IsMonsterCard = true;
+            checkbox_Trap.IsChecked = false;
+            SetItemSources();
         }
-        else if (checkbox_Monster.IsChecked == false && checkbox_Spell.IsChecked == false)
+        else if (checkbox_Monster.IsChecked == false && checkbox_Spell.IsChecked == false && checkbox_Trap.IsChecked == false)
         {
             checkbox_Monster.IsChecked = true;
-            IsMonsterCard = true;
         }
     }
 
@@ -166,16 +216,37 @@ public partial class AdvancedSearchpage : ContentPage
         if (checkbox_Spell.IsChecked == true)
         {
             checkbox_Monster.IsChecked = false;
-            IsMonsterCard = false;
+            checkbox_Trap.IsChecked = false;
+            SetItemSources();
         }
-        else if (checkbox_Monster.IsChecked == false && checkbox_Spell.IsChecked == false)
+        else if (checkbox_Monster.IsChecked == false && checkbox_Spell.IsChecked == false && checkbox_Trap.IsChecked == false)
         {
             checkbox_Spell.IsChecked = true;
-            IsMonsterCard = false;
+        }
+    }
+
+    private void checkbox_Trap_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (checkbox_Trap.IsChecked == true)
+        {
+            checkbox_Monster.IsChecked = false;
+            checkbox_Spell.IsChecked = false;
+            SetItemSources();
+        }
+        else if (checkbox_Monster.IsChecked == false && checkbox_Spell.IsChecked == false && checkbox_Trap.IsChecked == false)
+        {
+            checkbox_Spell.IsChecked = true;
         }
     }
 
     //Navigation
+
+    private async void button_back_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
+
+    }
+
     private async void button_Go_Clicked(object sender, EventArgs e)
     {
         APIReqeustHandler reqeustHandler = new APIReqeustHandler();
@@ -188,4 +259,6 @@ public partial class AdvancedSearchpage : ContentPage
         }
         await Navigation.PushModalAsync(new SearchResults(searchResults));
     }
+
+
 }
