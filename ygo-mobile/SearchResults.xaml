@@ -10,28 +10,28 @@
             
             <!--Data Templates-->
             <DataTemplate x:Key="displayTemplate_general">
-                <Border>
+                <Border Margin="2" StrokeThickness="3">
                     <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
-                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HeightRequest="132" WidthRequest="104" Margin="3"/>
-                        <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" Margin="0,5,0,0"/>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HeightRequest="132" HorizontalOptions="Start" WidthRequest="104" Margin="3"/>
+                        <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalOptions="Start" Margin="0,5,0,0"/>
 
-                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
-                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>                        
+                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>                        
 
                     </Grid>
                 </Border>
             </DataTemplate>
             <DataTemplate x:Key="displayTemplate_monster">
-                <Border>
+                <Border Margin="2" StrokeThickness="3">
                     <Grid ColumnDefinitions="2*, 1*, 1*, 1*" RowDefinitions="*, *" Padding="0, 0, 80,0 ">
-                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HeightRequest="132" WidthRequest="104" Margin="3"/>
-                        <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" Margin="0,5,0,0"/>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HorizontalOptions="Start" HeightRequest="132" WidthRequest="104" Margin="3"/>
+                        <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalOptions="Start" Margin="0,5,0,0"/>
 
-                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
-                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
-                        
-                        <Image Grid.Column="3" Grid.Row="1" Source="icon_level.png" HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
-                        <Label Grid.Column="3" Grid.Row="1" Text="{Binding Level}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,30,7"/>
+                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
+
+                        <Image Grid.Column="3" Grid.Row="1" Source="icon_level.png" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
+                        <Label Grid.Column="3" Grid.Row="1" Text="{Binding Level}"  VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,30,7"/>
                     </Grid>
                 </Border>
             </DataTemplate>
