@@ -11,73 +11,30 @@ namespace ygo_mobile
         public string ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string? Pendulum_Description { get; set; }
-
         public string Type { get; set; }
-        public string Tribe { get; set; }
-        public string Attribute { get; set; }
+        public string Tribe { get; set; } //known as 'race' by the API
+        public Dictionary<string, Image>? CardImages { get; set; }
 
-        public int Level { get; set; }
-        public int Atk { get; set; }
-        public int Def { get; set; }
+        public ImageSource GeneralImage { get; set; }
+        public ImageSource AttributeImage { get; set; }
+        public ImageSource TribeImage { get; set; }
 
-        //other card attributes
-        //public int Pend_Scale { get; set; }
-        public List<String> LinkMarkers { get; set; }
-
-        public Dictionary<string, string>? CardImages { get; set; } = new Dictionary<string, string>();
-
-
-        //--misc info--
-        //public List<string>? CardSets { get; set; }
-        //cardsets that include the card
-
-        //public List<string>? CardPrices { get; set; }
-        //NOTE: might not keep this
-
-
-        /// <summary>
-        /// instatiates a Card
-        /// </summary>
-        /// <param name="iD"></param>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        /// <param name="type"></param>
-        /// <param name="tribe"></param>
-        /// <param name="attribute"></param>
-        /// <param name="level"></param>
-        /// <param name="atk"></param>
-        /// <param name="def"></param>
-        public Card(string iD, string name, string description, string type, string tribe, string attribute, int level, int atk, int def)
+        public Card(int iD, string name, string description, string type, string tribe, Dictionary<string, string> cardimages)
         {
-            ID = iD;
+            ID = iD.ToString();
             Name = name;
             Description = description;
             Type = type;
             Tribe = tribe;
-            Attribute = attribute;
-            Level = level;
-            Atk = atk;
-            Def = def;
-        }
-
-
-
-        public Image? UrlToImage(string key)
-        {
-            if (CardImages == null)
+            CardImages = new Dictionary<string, Image>();
+            foreach (KeyValuePair<string, string> image in cardimages)
             {
-                return null;
+                CardImages.Add(image.Key, new Image { Source = image.Value});
             }
-            else if (CardImages.ContainsKey(key))
-            {
-                Image image = new Image { Source = CardImages[key] };
-                return image;
-            }
-            else
-            {
-                return null;
-            }
+            GeneralImage = CardImages["image"].Source;
+
+            AttributeImage = ImageSource.FromFile($"attribute_{Type.Replace(" ", "")}.png");
+            TribeImage = ImageSource.FromFile($"tribe_{Tribe.Replace(" ", "").Replace("-","")}.png");
         }
     }
 }

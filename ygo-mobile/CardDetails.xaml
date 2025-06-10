@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ygo_mobile.cardDetails"
+             Title="cardDetails">
+    
+<!--TODO: add page navigation-->
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- back button/header-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton x:Name="button_Back" Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" Clicked="button_Back_Clicked"/>
+                <Label x:Name="label_name" Text="[PLACEHOLDER]" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontAttributes="Bold" FontSize="20"/>
+            </Grid>
+            <!--GUI TOP-->
+            <HorizontalStackLayout>
+                <!--CARD IMAGE-->
+                <!--placeholder card image, min H264 W208 replaced with proper icon via [].xaml.cs-->
+                <Image x:Name="image_card" Source="placeholder_card.png" MinimumHeightRequest="264" MinimumWidthRequest="208" Margin="3"/>
+
+                <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Fill">
+                    <!--ATTRIBUTE-->
+                    <HorizontalStackLayout>
+                        <!--default/placeholder attribute icon and text, replaced with proper icon/text via [].xaml.cs  -->
+                        <Image x:Name="image_attribute" Source="attribute_placeholder.png" HeightRequest="50" WidthRequest="50" />
+                        <Label x:Name="label_attribute" Text="[Attr.]" VerticalTextAlignment="Center"/>
+                    </HorizontalStackLayout>
+
+                    <!--TRIBE/RACE/TYPE-->
+                    <HorizontalStackLayout>
+                        <!--default/placeholder type icon and text, replaced with proper icon/text via [].xaml.cs  -->
+                        <Image x:Name="image_tribe" Source="attribute_placeholder.png" HeightRequest="50" WidthRequest="50" />
+                        <Label x:Name="label_tribe" Text="[Type]" VerticalTextAlignment="Center"/>
+                    </HorizontalStackLayout>
+
+                    <!--TODO: Add button functionality-->
+                    <VerticalStackLayout MinimumWidthRequest="190" Spacing="2" VerticalOptions="End">
+                        <!--ADD TO DECK-->
+                        <Button Text="Favourite [Not implemented]" MinimumHeightRequest="75"  HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                        <!--FAVOURITE-->
+                        <Button Text="Add to deck [Not implemented]" MinimumHeightRequest="75" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <!--RANK/LEVEL-->
+            <!--Default rank/level icon, hidden by default, shown as appropriate by [].xaml.cs-->
+            <Border x:Name="border_level" StrokeShape="RoundRectangle 10, 10, 10, 10" Margin="0, 5, 0 ,0" IsVisible="Collapse">
+                <CollectionView ItemsLayout="HorizontalList" x:Name="list_level" HorizontalOptions="Start" Margin="0,3,0,3">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="icon_level.png" MaximumHeightRequest="33"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+            <Border x:Name="border_rank" StrokeShape="RoundRectangle 10, 10, 10, 10" Margin="0, 5, 0 ,0" IsVisible="Collapse">
+                <CollectionView ItemsLayout="HorizontalList" x:Name="list_rank" HorizontalOptions="Start" Margin="0,3,0,3">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="icon_rank.png" MaximumHeightRequest="33"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+
+
+            <VerticalStackLayout Margin="3,0,3,0">
+                <Border>
+                    <VerticalStackLayout>
+                        <!--CARD NAME-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="label_cardName" Text="[PLACEHOLDER]" FontSize="18" Padding="2,0,0,0" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" />
+                            <HorizontalStackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="Center">
+                                <Label x:Name="label_atk" Text="" FontSize="18" FontAttributes="Bold" />
+                                <Label x:Name="label_def" Text="" FontSize="18" FontAttributes="Bold" />
+                            </HorizontalStackLayout>
+                        </Grid>
+
+                        <!--CARD DESC-->
+                        <Border Margin="3">
+                            <VerticalStackLayout>
+                                <Label x:Name="label_carddata" Text=""/>
+                                <Border x:Name="border_pendulum_desc"  IsVisible="Collapse">
+                                    <Label x:Name="label_pend_description" Margin="2,0,2,0" Text="[PLACEHOLDER]" />
+                                </Border>
+                                <Label x:Name="label_description" Margin="2,0,2,0" Text="[PLACEHOLDER]" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <!--TODO: implement expandable listview-->
+            <ListView>
+                <!--MISC.-INFO-->
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

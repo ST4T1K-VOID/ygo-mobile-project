@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        private async void button_navigate_search_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new AdvancedSearchpage());
+        }
     }
 }
