@@ -5,26 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ygo_mobile"
     Shell.FlyoutBehavior="Flyout"
-    Title="ygo_mobile">
+    Shell.NavBarIsVisible="False">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage"
-    />
-    <ShellContent
-        Title="Card-Details"
-        ContentTemplate="{DataTemplate local:cardDetails}"
-        Route="card-details"
-    />
-    <ShellContent
-        Title="search-resutls"
-        ContentTemplate="{DataTemplate local:SearchResults}"
-        Route="search-results"
-    />
-    <ShellContent
-        Title="advanced_searchpage"
-        ContentTemplate="{DataTemplate local:AdvancedSearchpage}"
-        Route="advanced-searchpage"
     />
 </Shell>

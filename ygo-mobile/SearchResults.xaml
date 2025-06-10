@@ -15,8 +15,8 @@
                         <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HeightRequest="132" HorizontalOptions="Start" WidthRequest="104" Margin="3"/>
                         <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalOptions="Start" Margin="0,5,0,0"/>
 
-                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
-                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>                        
+                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}"  HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>                        
 
                     </Grid>
                 </Border>
@@ -27,10 +27,10 @@
                         <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding GeneralImage}" HorizontalOptions="Start" HeightRequest="132" WidthRequest="104" Margin="3"/>
                         <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalOptions="Start" Margin="0,5,0,0"/>
 
-                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
-                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
+                        <Image Grid.Column="1" Grid.Row="1" Source="{Binding AttributeImage}"  HeightRequest="60" WidthRequest="60" Margin="0,0,35,7"/>
+                        <Image Grid.Column="2" Grid.Row="1" Source="{Binding TribeImage}"  HeightRequest="60" WidthRequest="60" Margin="0,0,42,7"/>
 
-                        <Image Grid.Column="3" Grid.Row="1" Source="icon_level.png" HorizontalOptions="Start" HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
+                        <Image Grid.Column="3" Grid.Row="1" Source="icon_level.png"  HeightRequest="60" WidthRequest="60" Margin="0,0,30,7"/>
                         <Label Grid.Column="3" Grid.Row="1" Text="{Binding Level}"  VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,30,7"/>
                     </Grid>
                 </Border>
@@ -94,7 +94,15 @@
     <ScrollView>
         <VerticalStackLayout>
 
-            <!--TODO: NAVIGATION/HEADER-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton x:Name="button_back" Clicked="button_back_Clicked" Source="placeholder_icon_back.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0"/>
+            </Grid>
 
             <CollectionView x:Name="collection_resulstsPortrait" SelectionChanged="collection_resulstsPortrait_SelectionChanged" SelectionMode="Single" Style="{StaticResource layout_single}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
                 <CollectionView.ItemsLayout>
@@ -103,7 +111,7 @@
             </CollectionView>
             
             <!--LANDSCAPE-->
-            <CollectionView x:Name="collection_resulstsLandscape" SelectionChanged="collection_resulstsLandscape_SelectionChanged" SelectionMode="Single" Style="{StaticResource layout_grid}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
+            <CollectionView x:Name="collection_resulstsLandscape" SelectionChanged="collection_resulstsLandscape_SelectionChanged"  SelectionMode="Single" Style="{StaticResource layout_grid}" ItemTemplate="{StaticResource DisplayTemplateSelector}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2"/>
                 </CollectionView.ItemsLayout>

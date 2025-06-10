@@ -51,17 +51,19 @@
         <Grid ColumnDefinitions="*, *, *, *, *">
             <Label Text="Level" Margin="10, 0" VerticalOptions="Center"/>
             <Button x:Name="button_levelMinus" Grid.Column="1" Text="-" FontAttributes="Bold" Clicked="button_levelMinus_Clicked" IsEnabled="False"/>
-            <Label x:Name="label_LevelVal" MinimumWidthRequest="80" Grid.Column="2" Text="0" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+            <Label x:Name="label_LevelVal" MinimumWidthRequest="80" Grid.Column="2" Text="not specified" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
             <Button x:Name="button_levelPlus" Grid.Column="3" Text="+" FontAttributes="Bold" Clicked="button_levelPlus_Clicked" />
         </Grid>
-            
-        <!--GO/CLEAR-->
-        <HorizontalStackLayout Spacing="2">
-            <Button x:Name="button_Go" Text="GO" Clicked="button_Go_Clicked"/>
-            <Button x:Name="button_Clear" Text="CLEAR"/>
-        </HorizontalStackLayout>    
 
-        <!--TODO: language preference see: session 11-->
-        
+        <Picker x:Name="preference_language" SelectedIndexChanged="preference_language_SelectedIndexChanged"/>
+
+        <!--GO/CLEAR-->
+        <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+            <Button x:Name="button_Go" Text="GO" Padding="35,20,35,20" Clicked="button_Go_Clicked"/>
+            <Button x:Name="button_Clear" Padding="23,20,23,20" Text="CLEAR" Clicked="button_Clear_Clicked"/>
+        </HorizontalStackLayout>
+
+        <ActivityIndicator x:Name="icon_loading" IsRunning="False" IsVisible="False" />
+
     </VerticalStackLayout>
 </ContentPage>
