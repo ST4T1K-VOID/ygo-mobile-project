@@ -7,7 +7,10 @@ public partial class cardDetails : ContentPage
     Card CurrentCard = null;
     public cardDetails(Card selectedCard)
 	{
-        CurrentCard = selectedCard;
+        if (CurrentCard == null)
+        {
+            CurrentCard = selectedCard;
+        }
 		InitializeComponent();
 		UpdatePage();
     }
@@ -84,4 +87,9 @@ public partial class cardDetails : ContentPage
 		}
 		return;
 	}
+
+    private async void button_Back_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
+    }
 }
