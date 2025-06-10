@@ -63,14 +63,9 @@ namespace ygo_mobile
                     count++;
                     continue;
                 }
-                if (count == (variables.Count - 1))
-                {
-                    break;
-                }
                 else
                 {
                     requestString = requestString + "&" + parameter.Key + "=" + parameter.Value;
-                    count++;
                 }
             }
             return urlString + requestString;
