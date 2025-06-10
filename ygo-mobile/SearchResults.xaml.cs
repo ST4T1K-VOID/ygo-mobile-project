@@ -7,8 +7,8 @@ public partial class SearchResults : ContentPage
 	public SearchResults( List<Card> cards = null)
 	{
 		InitializeComponent();
-		//collection_resulstsPortrait.SelectedItem = null;
-		//collection_resulstsLandscape.SelectedItem = null;
+        //collection_resulstsPortrait.SelectedItem = null;
+        //collection_resulstsLandscape.SelectedItem = null;
 		testFunc();
 		//if cards == empty display no results found message
 	}
@@ -20,7 +20,7 @@ public partial class SearchResults : ContentPage
 
         collection_resulstsPortrait.ItemsSource = Cards;
         collection_resulstsLandscape.ItemsSource = Cards;
-    }
+	}
 
     private async void collection_resulstsPortrait_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
