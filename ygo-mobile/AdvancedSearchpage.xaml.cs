@@ -6,8 +6,11 @@ public partial class AdvancedSearchpage : ContentPage
     public AdvancedSearchpage()
 	{
 		InitializeComponent();
+
         RetrieveArchetypes();
         picker_Attribute.ItemsSource = CardAttributes;
+
+
     }
 
     //pre-determined values for card: Type, Tribe, Attribute
@@ -108,6 +111,9 @@ public partial class AdvancedSearchpage : ContentPage
 
     private List<string> CardArchetypes = new List<string>();
 
+    /// <summary>
+    /// Sets itemsources and enables/disables UI elements based on which card type is selected
+    /// </summary>
     private void SetItemSources()
     {
         picker_Type.ItemsSource = CardTypes;
@@ -150,6 +156,10 @@ public partial class AdvancedSearchpage : ContentPage
         }
     }
 
+    /// <summary>
+    /// API call to retrive archetypes and set archetype picker
+    /// </summary>
+    /// <returns></returns>
     private async Task RetrieveArchetypes()
     {
         if (CardArchetypes.Count() == 0)
@@ -159,6 +169,10 @@ public partial class AdvancedSearchpage : ContentPage
         }
     }
 
+    /// <summary>
+    /// retrives user entered data and converts to dictionary format for API call.
+    /// </summary>
+    /// <returns>A dictionary where key = paramter type and value = user entered data</returns>
     private Dictionary<string, string> PackParameters()
     {
         return new Dictionary<string, string>();
