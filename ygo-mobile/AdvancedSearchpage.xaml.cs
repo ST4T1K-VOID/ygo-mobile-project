@@ -8,9 +8,9 @@ public partial class AdvancedSearchpage : ContentPage
 		InitializeComponent();
 
         RetrieveArchetypes();
+        preference_language.ItemsSource = new List<string>() {"English", "Italian", "French", "German", "Portuguese"};
+        preference_language.SelectedItem = Preferences.Get("Language", "English");
         picker_Attribute.ItemsSource = CardAttributes;
-
-
     }
 
     //pre-determined values for card: Type, Tribe, Attribute
@@ -137,7 +137,7 @@ public partial class AdvancedSearchpage : ContentPage
 
             button_levelPlus.IsEnabled = false;
             button_levelMinus.IsEnabled = false;
-            label_LevelVal.Text = "0";
+            label_LevelVal.Text = "not specified";
 
             picker_Tribe.ItemsSource = CardTribes["Spell Tribes"];
         }
@@ -150,7 +150,7 @@ public partial class AdvancedSearchpage : ContentPage
 
             button_levelPlus.IsEnabled = false;
             button_levelMinus.IsEnabled = false;
-            label_LevelVal.Text = "0";
+            label_LevelVal.Text = "not specified";
 
             picker_Tribe.ItemsSource = CardTribes["Trap Tribes"];
         }
@@ -175,7 +175,73 @@ public partial class AdvancedSearchpage : ContentPage
     /// <returns>A dictionary where key = paramter type and value = user entered data</returns>
     private Dictionary<string, string> PackParameters()
     {
-        return new Dictionary<string, string>();
+        Dictionary<string, string> packedParameters = new Dictionary<string, string>();
+
+        //Universal parameters
+        if (entry_cardName.Text != "" && entry_cardName.Text != string.Empty && entry_cardName.Text != null)
+        {
+            packedParameters.Add("fname", entry_cardName.Text.Replace(" ", "%20"));
+        }
+        if (picker_Tribe.SelectedItem != null)
+        {
+            packedParameters.Add("race", picker_Tribe.SelectedItem.ToString().Replace(" ", "%20"));
+        }
+        if (picker_Archetype.SelectedItem != null)
+        {
+            packedParameters.Add("archetype", picker_Archetype.SelectedItem.ToString().Replace(" ", "%20"));
+        }
+
+        string language = preference_language.SelectedItem.ToString();
+        switch (language)
+        {
+            case "English":
+                break;
+
+            case "French":
+                packedParameters.Add("language", "fr");
+                break;
+
+            case "German":
+                packedParameters.Add("language", "de");
+                break;
+
+            case "Italian":
+                packedParameters.Add("language", "it");
+                break;
+
+            case "Portuguese":
+                packedParameters.Add("language", "pt");
+                break;
+        }
+        
+        if (checkbox_Monster.IsChecked == true)
+        {
+            //Monster-specific parameters
+            if (picker_Type.SelectedItem != null)
+            {
+                packedParameters.Add("type", picker_Type.SelectedItem.ToString().Replace(" ", "%20"));
+            }
+            if (picker_Attribute.SelectedItem != null)
+            {
+                packedParameters.Add("attribute", picker_Attribute.SelectedItem.ToString().Replace(" ", "%20"));
+            }
+            if (int.TryParse(label_LevelVal.Text, out int value))
+            {
+                packedParameters.Add("level", label_LevelVal.Text);
+            }
+        }
+
+        if (checkbox_Spell.IsChecked)
+        {
+            packedParameters.Add("type", "spell%20card");
+        }
+        if (checkbox_Trap.IsChecked)
+        {
+            packedParameters.Add("type", "trap%20card");
+        }
+
+
+        return packedParameters;
     }
 
     //EVENTS
@@ -185,20 +251,23 @@ public partial class AdvancedSearchpage : ContentPage
         button_levelPlus.IsEnabled = true;
         if (label_LevelVal.Text == "0")
         {
+            label_LevelVal.Text = "not specified";
+            button_levelMinus.IsEnabled = false;
             return;
         }
         if (int.TryParse(label_LevelVal.Text, out int value))
         {
             label_LevelVal.Text = (value - 1).ToString();
-            if ((value - 1) == 0)
-            {
-                button_levelMinus.IsEnabled = false;
-            }
         }
     }
 
     private void button_levelPlus_Clicked(object sender, EventArgs e)
     {
+        if (label_LevelVal.Text == "not specified")
+        {
+            label_LevelVal.Text = "1";
+            return;
+        }
         if (int.TryParse(label_LevelVal.Text, out int value))
         {
             button_levelMinus.IsEnabled = true;
@@ -208,6 +277,10 @@ public partial class AdvancedSearchpage : ContentPage
                 button_levelPlus.IsEnabled = false;
             }
         }
+    }
+    private void preference_language_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Preferences.Set("Language", preference_language.SelectedItem.ToString());
     }
 
     // Prevents both or neither checkboxes being checked
@@ -258,21 +331,40 @@ public partial class AdvancedSearchpage : ContentPage
     private async void button_back_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopModalAsync();
-
     }
 
     private async void button_Go_Clicked(object sender, EventArgs e)
     {
         APIReqeustHandler reqeustHandler = new APIReqeustHandler();
 
-        List<Card> searchResults = await reqeustHandler.SendRequest(PackParameters());
+        Dictionary<string, string> parameters = PackParameters();
+        if (parameters.Count == 0 || parameters == null)
+        {
+            return;
+        }
+
+        icon_loading.IsRunning = true;
+        icon_loading.IsVisible = true;
+        List<Card> searchResults = await reqeustHandler.SendRequest(parameters);
         if (searchResults == null)
         {
             //critical problem
             //display error, throw exception
+            return;
         }
         await Navigation.PushModalAsync(new SearchResults(searchResults));
+        icon_loading.IsRunning = false;
+        icon_loading.IsVisible = false;
     }
 
+    private void button_Clear_Clicked(object sender, EventArgs e)
+    {
+        entry_cardName.Text = null;
+        picker_Tribe.SelectedItem = null;
+        picker_Archetype.SelectedItem = null;
 
+        picker_Type.SelectedItem = null;
+        picker_Attribute.SelectedItem = null;
+        label_LevelVal.Text = "not specified";
+    }
 }
