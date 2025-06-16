@@ -3,20 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ygo_mobile.MainPage">
 
-    <VerticalStackLayout>
+    <Grid RowDefinitions="1*, 1*, 2*, 2*, 2*" ColumnDefinitions="1*,8*,1*" RowSpacing="15" Margin="5,0,5,20" VerticalOptions="Start">
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Text="YU-GI-OH Mobile Database" FontSize="Title"  FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Center"/>
+        <!--<ImageButton Grid.Row="0" Grid.Column="2" x:Name="button_options" Source="placeholder_icon_settings.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="Center"/>-->
 
-        <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Start">
-            <!-- back button/options/header-->
-            <ImageButton x:Name="button_options" Source="placeholder_icon_.png" Margin="3,0,0,0" MaximumWidthRequest="40" MaximumHeightRequest="40" HorizontalOptions="End"/>
-        </HorizontalStackLayout>
+        <!--<Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="entry_quickSearch" Placeholder="Enter a card name..." MinimumWidthRequest="100" />-->  
+        <Button Grid.Row="2" Grid.Column="1" x:Name="button_navigate_search" Text="Advanced Search" Clicked="button_navigate_search_Clicked" MinimumHeightRequest="100" Margin="0,15,0,0"/>
 
-        <Entry/>
-
-        <Button/>
-
-        <!-- Additional content to be added-->
-        <Button/>
-        <Button/>
-
-    </VerticalStackLayout>
+        <Button Text="Decks [Not implemented]" Grid.Row="3" Grid.Column="1" MinimumHeightRequest="100"/>
+        <Button Text="Favourites [Not implemented]" Grid.Row="4" Grid.Column="1" MinimumHeightRequest="100"/>
+    </Grid>
 </ContentPage>
