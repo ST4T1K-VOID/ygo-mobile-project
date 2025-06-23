@@ -32,10 +32,20 @@ namespace ygo_mobile
         public async Task<List<Card>> SendRequest(Dictionary<string, string> variables)
         {
             HttpClient client = new HttpClient();
-
+            HttpResponseMessage? httpResponseMessage = new HttpResponseMessage();
             Console.WriteLine(FormatReqeust(variables));
-
-            HttpResponseMessage httpResponseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, FormatReqeust(variables)));
+            string temp = FormatReqeust(variables);
+            Console.WriteLine();
+            try
+            {
+                httpResponseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, FormatReqeust(variables)));
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return [];
+            }
+            
 
             if (!httpResponseMessage.IsSuccessStatusCode)
             {

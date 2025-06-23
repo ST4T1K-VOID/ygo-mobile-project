@@ -8,6 +8,10 @@ public partial class AdvancedSearchpage : ContentPage
 		InitializeComponent();
 
         RetrieveArchetypes();
+        if (CardArchetypes.Count == 0)
+        {
+            picker_Archetype.IsEnabled = false;
+        }
         preference_language.ItemsSource = new List<string>() {"English", "Italian", "French", "German", "Portuguese"};
         preference_language.SelectedItem = Preferences.Get("Language", "English");
         picker_Attribute.ItemsSource = CardAttributes;
@@ -345,13 +349,22 @@ public partial class AdvancedSearchpage : ContentPage
 
         icon_loading.IsRunning = true;
         icon_loading.IsVisible = true;
-        List<Card> searchResults = await reqeustHandler.SendRequest(parameters);
-        if (searchResults == null)
+
+        List<Card> searchResults = null;
+        try
         {
-            //critical problem
-            //display error, throw exception
+            searchResults = await reqeustHandler.SendRequest(parameters);
+        }
+        catch
+        {
+            await DisplayAlert("Error","failed to connect to API, are you connected to the internet?", "OK");
             return;
         }
+        if (searchResults != null)
+        {
+            return;
+        }
+
         await Navigation.PushModalAsync(new SearchResults(searchResults));
         icon_loading.IsRunning = false;
         icon_loading.IsVisible = false;
